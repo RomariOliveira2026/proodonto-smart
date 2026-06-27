@@ -45,12 +45,12 @@ export function ReceitaRecuperavelHojeHero({ data }: Props) {
             Valor estimado recuperável com as ações prioritárias identificadas pela IA para hoje.
           </p>
 
-          <Link to="/app/oportunidades">
+          <Link to="/app/oportunidades" className="inline-flex">
             <Button
-              variant="secondary"
+              variant="outline"
               size="lg"
-              icon={<ArrowUpRight className="w-5 h-5" />}
-              className="bg-white text-primary hover:bg-white/95 border-0 shadow-none"
+              icon={<ArrowUpRight className="w-5 h-5 text-primary" />}
+              className="!bg-white !text-primary hover:!bg-white/90 !border-white/20 shadow-soft [&_svg]:text-primary"
             >
               Ver oportunidades
             </Button>
