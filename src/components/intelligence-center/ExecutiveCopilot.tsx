@@ -20,6 +20,7 @@ import { GrowthSuggestions } from './GrowthSuggestions'
 import { IntelligentTimeline } from './IntelligentTimeline'
 import { QuickQuestions } from './QuickQuestions'
 import { RevenueRecovered } from './RevenueRecovered'
+import { LiveIntelligenceEngine } from '../live-intelligence'
 
 export function ExecutiveCopilot() {
   const now = useLiveClock()
@@ -74,6 +75,8 @@ export function ExecutiveCopilot() {
           Centro de Inteligência · Builder Intelligence Engine™
         </p>
       </FadeIn>
+
+      <LiveIntelligenceEngine missionActionKey={briefing.missaoDoDia.actionKey} />
 
       <ExecutiveSummary nome={nome} now={now} briefing={briefing} />
 

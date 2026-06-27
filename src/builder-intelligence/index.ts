@@ -43,6 +43,17 @@ export {
 } from './engines'
 export { runExecutiveEngine, getExecutiveBriefing } from './engines/executive-engine'
 export { buildExecutiveAnswer, humanizeExecutiveTone } from './lib/executiveVoice'
+export { runPlanThinkingSequence, formatActivityTime } from './lib/liveIntelligenceEngine'
+export { liveIntelligenceSnapshot, formatTempoEconomizado } from './data/liveIntelligenceSnapshot'
+
+export type {
+  LiveActivityItem,
+  LiveIntelligenceStats,
+  LiveIntelligenceSnapshot,
+  AiNotificationItem,
+  AiNotificationType,
+  PlanThinkingStep,
+} from './types/liveIntelligence'
 
 export { BuilderIntelligenceProvider, useBuilderIntelligence } from './components/BuilderIntelligenceProvider'
 export { BuilderIntelligenceShell } from './components/BuilderIntelligenceShell'
