@@ -1,0 +1,44 @@
+---
+description: Princípio de produto CEO — toda feature deve gerar valor para o dono da clínica
+alwaysApply: true
+---
+
+# ProOdonto Smart — Princípio CEO
+
+A partir da Sprint 03, pensar como **CEO**, não como desenvolvedor.
+
+## Filtro obrigatório (antes de qualquer feature)
+
+> **"Se eu fosse dono da clínica, pagaria por isso?"**
+
+- **NÃO** → descartar. Não implementar. Não poluir a interface.
+- **SIM** → transformar na **melhor experiência possível** do mercado.
+
+## O produto NÃO é
+
+- Um ERP de cadastro
+- Um repositório de informações
+- Uma tela que só exibe dados que já existem em outro lugar
+
+## O produto É
+
+Fazer o gestor **ganhar dinheiro**, **economizar tempo** e **tomar decisões melhores**.
+
+## Ao propor ou implementar
+
+1. Qual receita recupera, protege ou gera?
+2. Quantos minutos do gestor/dentista/recepção economiza?
+3. Qual decisão fica mais clara em menos de 30 segundos?
+4. O gestor age imediatamente ou só "consulta um registro"?
+
+Se não responder nenhuma dessas três com clareza, a feature não entra.
+
+## Design e UX
+
+- Priorizar ação, impacto financeiro e próximo passo — não tabelas e formulários
+- Inspirar-se em painéis executivos (Stripe, HubSpot, Linear), não em prontuários
+- Cada tela deve fazer o dono pensar: *"esse sistema administra minha clínica comigo"*
+
+## Builder UI
+
+Componentes reutilizáveis no Builder Core — mas só os que passam no filtro CEO acima.

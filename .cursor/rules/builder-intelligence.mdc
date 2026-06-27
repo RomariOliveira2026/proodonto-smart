@@ -1,0 +1,35 @@
+---
+description: Builder Intelligence™ — motor executivo de inteligência do ecossistema BuilderTudo
+alwaysApply: true
+---
+
+# Builder Intelligence™
+
+Motor proprietário de inteligência da BuilderTudo. Reutilizável em ProOdonto, PrevPro, IndustrIA, FuelMaster, Fui, AuditeIA, Recomeça+.
+
+## Não é chatbot
+
+É camada executiva: diagnóstico → oportunidade → recomendação → ação.
+
+## Engines (domínio-agnósticos)
+
+- Decision · Prediction · Automation · Revenue · Risk · Insights · Recommendation
+
+## Toda resposta deve
+
+1. Diagnosticar
+2. Mostrar oportunidade (receita, tempo, risco)
+3. Recomendar prioridade
+4. Sugerir ação executável
+
+## UI
+
+- Painel lateral premium (nunca chat simples)
+- Respostas visuais: cards, métricas, gráficos, listas priorizadas
+- IA inicia a conversa com briefing executivo
+
+## Código
+
+- Core em `src/builder-intelligence/` — sem dependência de domínio odontológico
+- Adapters por produto em `adapters/`
+- UI em `components/`

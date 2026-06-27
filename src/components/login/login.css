@@ -1,0 +1,76 @@
+/* Login — animações GPU-friendly (transform + opacity) */
+@keyframes login-wave {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.35; }
+  50% { transform: translate(2%, -1.5%) scale(1.04); opacity: 0.5; }
+}
+
+@keyframes login-float {
+  0%, 100% { transform: translateY(0); opacity: 0.25; }
+  50% { transform: translateY(-12px); opacity: 0.55; }
+}
+
+@keyframes login-spin {
+  to { transform: rotate(360deg); }
+}
+
+.login-wave {
+  animation: login-wave 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.login-wave-delayed {
+  animation: login-wave 22s ease-in-out infinite reverse;
+  will-change: transform, opacity;
+}
+
+.login-particle {
+  animation: login-float 8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.login-spinner {
+  animation: login-spin 0.7s linear infinite;
+  will-change: transform;
+}
+
+.login-btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.login-btn-glow:hover::before {
+  transform: translateX(120%);
+}
+
+.login-btn-glow:focus-visible {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.25),
+    0 0 24px rgba(29, 167, 224, 0.35),
+    var(--shadow-glow);
+}
+
+.login-form-card {
+  box-shadow: var(--shadow-soft);
+}
+
+.dark .login-form-card {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 24px 48px rgba(0, 0, 0, 0.25);
+}
