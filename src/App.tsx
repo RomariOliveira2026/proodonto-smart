@@ -1,9 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { BuilderIntelligenceProvider } from './builder-intelligence'
+import { ProtectedRoute, GuestRoute } from './components/auth/ProtectedRoute'
 import { AppLayout } from './components/layout/AppLayout'
 import { BackToTop } from './components/layout/BackToTop'
 import { LandingPage } from './pages/LandingPage'
 import { LoginPage } from './pages/LoginPage'
+import { SignupPage } from './pages/SignupPage'
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { OportunidadesPage } from './pages/OportunidadesPage'
 import { CentroComandoPage } from './pages/CentroComandoPage'
@@ -21,22 +24,31 @@ export default function App() {
     <BrowserRouter>
       <BuilderIntelligenceProvider>
         <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/app" element={<AppLayout />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="oportunidades" element={<OportunidadesPage />} />
-          <Route path="centro-comando" element={<CentroComandoPage />} />
-          <Route path="smart-morning" element={<SmartMorningPage />} />
-          <Route path="agenda" element={<AgendaPage />} />
-          <Route path="pacientes" element={<PacientesPage />} />
-          <Route path="financeiro" element={<FinanceiroPage />} />
-          <Route path="pos-atendimento" element={<PosAtendimentoPage />} />
-          <Route path="multiunidades" element={<MultiunidadesPage />} />
-          <Route path="ia-assistente" element={<IAAssistentePage />} />
-          <Route path="configuracoes" element={<ConfiguracoesPage />} />
-        </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/" element={<LandingPage />} />
+
+          <Route element={<GuestRoute />}>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          </Route>
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/app" element={<AppLayout />}>
+              <Route index element={<DashboardPage />} />
+              <Route path="oportunidades" element={<OportunidadesPage />} />
+              <Route path="centro-comando" element={<CentroComandoPage />} />
+              <Route path="smart-morning" element={<SmartMorningPage />} />
+              <Route path="agenda" element={<AgendaPage />} />
+              <Route path="pacientes" element={<PacientesPage />} />
+              <Route path="financeiro" element={<FinanceiroPage />} />
+              <Route path="pos-atendimento" element={<PosAtendimentoPage />} />
+              <Route path="multiunidades" element={<MultiunidadesPage />} />
+              <Route path="ia-assistente" element={<IAAssistentePage />} />
+              <Route path="configuracoes" element={<ConfiguracoesPage />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <BackToTop />
       </BuilderIntelligenceProvider>

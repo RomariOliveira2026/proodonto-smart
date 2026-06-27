@@ -21,6 +21,8 @@ import {
   YAxis,
 } from 'recharts'
 import { FadeIn, AnimatedNumber, Badge, Card, CardHeader, ExecutiveShortcut } from '../builder-ui'
+import { ClinicMvpKpis } from '../components/dashboard/ClinicMvpKpis'
+import { useAuth } from '../contexts/AuthContext'
 import { NOTA_GERAL, riscos, oportunidadesVerdes } from '../data/centroComando'
 import { ReceitaRecuperavelCard } from '../components/executive/ReceitaRecuperavelCard'
 import { IAGestoraPanel } from '../components/executive/IAGestoraPanel'
@@ -56,6 +58,9 @@ const mapPins = [
 
 export function DashboardPage() {
   const now = useLiveClock()
+  const { user, organization } = useAuth()
+  const nome = user?.nome ?? 'João Thales'
+  const clinica = organization?.name ?? 'sua clínica'
   const chartData = faturamentoMensal.map((d) => ({
     mes: d.mes,
     total: (d.Aracaju + d['Simão Dias'] + d.Lagarto) / 1000,
@@ -68,10 +73,12 @@ export function DashboardPage() {
           <div>
             <Badge variant="primary" dot>Dashboard Executivo</Badge>
             <h1 className="font-display text-3xl lg:text-4xl font-bold text-fg-strong tracking-tight mt-3">
-              {getGreetingPT(now)}, João Thales.
+              {getGreetingPT(now)}, {nome.split(' ')[0]}.
             </h1>
             <p className="text-text-muted font-light mt-1">
-              Sua rede faturou <strong className="text-success font-semibold">{formatCurrency(metricas.faturamento)}</strong> este mês — com <strong className="text-primary font-semibold">R$ 61.840</strong> ainda recuperáveis.
+              Painel de <strong className="text-fg-secondary font-medium">{clinica}</strong> — faturamento{' '}
+              <strong className="text-success font-semibold">{formatCurrency(metricas.faturamento)}</strong> este mês, com{' '}
+              <strong className="text-primary font-semibold">R$ 61.840</strong> recuperáveis.
             </p>
           </div>
           <div className="flex items-center gap-3 text-sm text-text-muted">
@@ -81,6 +88,10 @@ export function DashboardPage() {
             <span className="px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-success font-semibold border border-emerald-200/60 dark:border-emerald-800/40">+12,4% vs. anterior</span>
           </div>
         </div>
+      </FadeIn>
+
+      <FadeIn delay={0.06}>
+        <ClinicMvpKpis />
       </FadeIn>
 
       <FadeIn delay={0.08}>

@@ -9,6 +9,14 @@ import { RadarClinica } from '../components/oportunidades/RadarClinica'
 import { FunilComercial } from '../components/oportunidades/FunilComercial'
 import { PrevisaoFaturamento } from '../components/oportunidades/PrevisaoFaturamento'
 import { RecomendacoesIA } from '../components/oportunidades/RecomendacoesIA'
+import type { Oportunidade } from '../data/oportunidades'
+
+const sections: { title: string; subtitle: string; filter: Oportunidade['categoria'] }[] = [
+  { title: 'Operação e agenda', subtitle: 'Confirmações e revisões que impactam o faturamento do dia.', filter: 'operacional' },
+  { title: 'Financeiro', subtitle: 'Parcelas e cobranças com potencial imediato de recuperação.', filter: 'financeiro' },
+  { title: 'Relacionamento', subtitle: 'Pacientes inativos e sem retorno — reative com automação.', filter: 'relacionamento' },
+  { title: 'Upsell odontológico', subtitle: 'Clareamento, facetas e implantes identificados pela IA comercial.', filter: 'upsell' },
+]
 
 export function OportunidadesPage() {
   const { showToast } = useToast()
@@ -25,7 +33,7 @@ export function OportunidadesPage() {
   }
 
   const confirmarPlano = () => {
-    showToast('Plano iniciado com sucesso.')
+    showToast('Plano de recuperação iniciado. Automações administrativas em execução.')
   }
 
   return (
@@ -38,7 +46,7 @@ export function OportunidadesPage() {
               Central de Oportunidades
             </h1>
             <p className="text-text-muted font-light mt-2 max-w-xl">
-              A IA identificou receitas que podem ser recuperadas imediatamente.
+              A IA identificou receitas recuperáveis — foco administrativo, financeiro e comercial. Sem diagnóstico clínico.
             </p>
           </div>
           <Button
@@ -48,23 +56,28 @@ export function OportunidadesPage() {
             onClick={() => abrirPlano('plano-completo')}
             className="shrink-0 w-full lg:w-auto"
           >
-            Executar Plano de Recuperação
+            Executar plano de recuperação
           </Button>
         </div>
       </FadeIn>
 
       <ReceitaRecuperavelHero valor={RECEITA_RECUPERAVEL} />
 
-      <section>
-        <h2 className="font-display text-xl font-bold text-fg-strong mb-4">
-          Oportunidades identificadas
-        </h2>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
-          {oportunidades.map((op, i) => (
-            <OpportunityCard key={op.id} oportunidade={op} index={i} onExecutar={abrirPlano} />
-          ))}
-        </div>
-      </section>
+      {sections.map((section) => {
+        const items = oportunidades.filter((o) => o.categoria === section.filter)
+        if (!items.length) return null
+        return (
+          <section key={section.filter}>
+            <h2 className="font-display text-xl font-bold text-fg-strong mb-1">{section.title}</h2>
+            <p className="text-sm text-text-muted mb-4">{section.subtitle}</p>
+            <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+              {items.map((op, i) => (
+                <OpportunityCard key={op.id} oportunidade={op} index={i} onExecutar={abrirPlano} />
+              ))}
+            </div>
+          </section>
+        )
+      })}
 
       <div className="grid lg:grid-cols-2 gap-6">
         <RadarClinica />

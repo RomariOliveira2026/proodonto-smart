@@ -3,11 +3,18 @@ import { Outlet } from 'react-router-dom'
 import { Bell, Menu, Search, Sparkles } from 'lucide-react'
 import { Sidebar } from './Sidebar'
 import { ThemeToggle } from '../../builder-ui'
+import { useAuth } from '../../contexts/AuthContext'
+import { getLead } from '../../lib/leadStorage'
 import { BuilderIntelligenceShell, useBuilderIntelligence } from '../../builder-intelligence'
 
 export function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { setOpen } = useBuilderIntelligence()
+  const { user, organization } = useAuth()
+  const lead = getLead()
+  const potencialHoje = lead?.calculator?.result.recuperavelAnual
+    ? Math.round(lead.calculator.result.recuperavelAnual / 365 / 1000 * 10) / 10
+    : 24.3
 
   return (
     <div className="min-h-screen bg-surface flex">
@@ -40,7 +47,7 @@ export function AppLayout() {
                 className="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-primary/5 dark:bg-primary/15 text-primary text-xs font-semibold hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                R$ 24.3k potencial hoje
+                R$ {potencialHoje}k potencial hoje
               </button>
               <button className="relative p-2.5 rounded-xl hover:bg-gray-100/80 dark:hover:bg-white/10 text-gray-500 dark:text-gray-400 transition-colors">
                 <Bell className="w-[18px] h-[18px]" />
@@ -48,11 +55,11 @@ export function AppLayout() {
               </button>
               <div className="flex items-center gap-3 pl-3 border-l border-gray-200/80 dark:border-border">
                 <div className="w-9 h-9 rounded-xl gradient-primary flex items-center justify-center text-white text-xs font-bold shadow-soft">
-                  JT
+                  {user?.avatarInitials ?? 'JT'}
                 </div>
                 <div className="hidden md:block">
-                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">João Thales</p>
-                  <p className="text-[11px] text-text-muted">Sócio-Administrador · Unidade Lagarto</p>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">{user?.nome ?? 'João Thales'}</p>
+                  <p className="text-[11px] text-text-muted">{user?.cargo ?? 'Sócio-Administrador'} · {organization?.city ?? 'Lagarto'}</p>
                 </div>
               </div>
             </div>

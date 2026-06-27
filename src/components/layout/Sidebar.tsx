@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   Bot,
   Building2,
@@ -20,6 +20,7 @@ import {
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { BrandLogo } from '../../builder-ui'
+import { useAuth } from '../../contexts/AuthContext'
 
 const menuItems = [
   { path: '/app', label: 'Dashboard', icon: LayoutDashboard, exact: true },
@@ -42,6 +43,8 @@ interface SidebarProps {
 
 export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { logout } = useAuth()
   const [collapsed, setCollapsed] = useState(false)
 
   const isActive = (path: string, exact?: boolean) =>
@@ -107,13 +110,18 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
           </nav>
 
           <div className="p-3 border-t border-white/[0.06]">
-            <Link
-              to="/login"
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-white/40 hover:text-white/70 hover:bg-white/[0.04] transition-all ${collapsed ? 'justify-center' : ''}`}
+            <button
+              type="button"
+              onClick={() => {
+                logout()
+                navigate('/login')
+                onMobileClose()
+              }}
+              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-[13px] text-white/40 hover:text-white/70 hover:bg-white/[0.04] transition-all w-full ${collapsed ? 'justify-center' : ''}`}
             >
               <LogOut className="w-[18px] h-[18px]" />
               {!collapsed && 'Sair'}
-            </Link>
+            </button>
             <button
               onClick={() => setCollapsed(!collapsed)}
               className="hidden lg:flex items-center justify-center w-full mt-1 py-2 text-white/30 hover:text-white/60 transition-colors"

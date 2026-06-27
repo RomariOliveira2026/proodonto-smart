@@ -58,7 +58,7 @@ export function LandingHeader({ menuOpen, onMenuToggle, onNavClick }: LandingHea
             >
               Entrar
             </Link>
-            <Link to="/login">
+            <Link to="#calculadora">
               <Button variant="glow" size="sm" className="shadow-glow">
                 Recuperar faturamento
               </Button>

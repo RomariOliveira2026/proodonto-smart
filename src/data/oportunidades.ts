@@ -6,9 +6,10 @@ import {
   Sparkles,
   Stethoscope,
   UserCheck,
+  UserX,
 } from 'lucide-react'
 
-export const RECEITA_RECUPERAVEL = 78430
+export const RECEITA_RECUPERAVEL = 101230
 
 export interface Oportunidade {
   id: string
@@ -19,15 +20,18 @@ export interface Oportunidade {
   icon: LucideIcon
   color: string
   bg: string
+  categoria: 'operacional' | 'financeiro' | 'relacionamento' | 'upsell'
 }
 
 export const oportunidades: Oportunidade[] = [
-  { id: 'confirmacoes', titulo: 'Consultas aguardando confirmação', quantidade: 18, quantidadeLabel: 'pacientes', valor: 14800, icon: CalendarCheck, color: 'text-sky-600', bg: 'bg-sky-500/10' },
-  { id: 'parcelas', titulo: 'Parcelas vencidas', quantidade: 9, quantidadeLabel: 'cobranças', valor: 12400, icon: CreditCard, color: 'text-amber-600', bg: 'bg-amber-500/10' },
-  { id: 'retorno', titulo: 'Pacientes sem retorno', quantidade: 12, quantidadeLabel: 'pacientes', valor: 9200, icon: RefreshCw, color: 'text-violet-600', bg: 'bg-violet-500/10' },
-  { id: 'revisoes', titulo: 'Revisões pendentes', quantidade: 22, quantidadeLabel: 'pacientes', valor: 18700, icon: Stethoscope, color: 'text-primary', bg: 'bg-primary/10' },
-  { id: 'clareamento', titulo: 'Upsell Clareamento', quantidade: 15, quantidadeLabel: 'pacientes', valor: 11800, icon: Sparkles, color: 'text-emerald-600', bg: 'bg-emerald-500/10' },
-  { id: 'facetas', titulo: 'Facetas Premium', quantidade: 8, quantidadeLabel: 'pacientes', valor: 11530, icon: UserCheck, color: 'text-rose-600', bg: 'bg-rose-500/10' },
+  { id: 'confirmacoes', titulo: 'Consultas aguardando confirmação', quantidade: 18, quantidadeLabel: 'pacientes', valor: 14800, icon: CalendarCheck, color: 'text-sky-600', bg: 'bg-sky-500/10', categoria: 'operacional' },
+  { id: 'parcelas', titulo: 'Parcelas vencidas', quantidade: 9, quantidadeLabel: 'cobranças', valor: 12400, icon: CreditCard, color: 'text-amber-600', bg: 'bg-amber-500/10', categoria: 'financeiro' },
+  { id: 'revisoes', titulo: 'Revisões pendentes', quantidade: 22, quantidadeLabel: 'pacientes', valor: 18700, icon: Stethoscope, color: 'text-primary', bg: 'bg-primary/10', categoria: 'operacional' },
+  { id: 'inativos', titulo: 'Pacientes inativos', quantidade: 14, quantidadeLabel: 'pacientes', valor: 9200, icon: UserX, color: 'text-violet-600', bg: 'bg-violet-500/10', categoria: 'relacionamento' },
+  { id: 'retorno', titulo: 'Pacientes sem retorno', quantidade: 12, quantidadeLabel: 'pacientes', valor: 8600, icon: RefreshCw, color: 'text-rose-600', bg: 'bg-rose-500/10', categoria: 'relacionamento' },
+  { id: 'clareamento', titulo: 'Oportunidade — Clareamento', quantidade: 15, quantidadeLabel: 'pacientes', valor: 11800, icon: Sparkles, color: 'text-emerald-600', bg: 'bg-emerald-500/10', categoria: 'upsell' },
+  { id: 'facetas', titulo: 'Oportunidade — Facetas', quantidade: 8, quantidadeLabel: 'pacientes', valor: 11530, icon: UserCheck, color: 'text-rose-600', bg: 'bg-rose-500/10', categoria: 'upsell' },
+  { id: 'implantes', titulo: 'Oportunidade — Implantes', quantidade: 6, quantidadeLabel: 'pacientes', valor: 14200, icon: Stethoscope, color: 'text-primary-light', bg: 'bg-primary-light/10', categoria: 'upsell' },
 ]
 
 export const radarIndicadores = [
