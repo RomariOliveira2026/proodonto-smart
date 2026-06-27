@@ -3,14 +3,19 @@ import type { ExecutiveBriefing } from '../types/executive'
 import {
   executiveDecisionsSeed,
   executiveFeedSeed,
+  executiveMensagemExecutivaSeed,
+  executiveMissaoDoDiaSeed,
+  executiveQuickQuestionsSeed,
   executiveResumoDiaSeed,
   executiveRevenueInsightsSeed,
+  executiveRevenueRecoveredSeed,
+  executiveTimelineSeed,
 } from '../data/executiveSnapshot'
+import { humanizeExecutiveTone } from '../lib/executiveVoice'
 
 /**
  * Builder Intelligence Engine — motor executivo.
- * Agrega engines existentes + snapshot simulado.
- * Ponto único para substituir por pipeline OpenAI + Supabase.
+ * Ponto único para substituir por pipeline OpenAI / Claude / Gemini + Supabase.
  */
 export function runExecutiveEngine(ctx: IntelligenceContext): ExecutiveBriefing {
   const receitaRecuperavel = Number(ctx.indicadores.receitaRecuperavel ?? 12480)
@@ -19,20 +24,34 @@ export function runExecutiveEngine(ctx: IntelligenceContext): ExecutiveBriefing 
     ctx.indicadores.oportunidadesAtivas ?? executiveDecisionsSeed.oportunidades.length,
   )
 
-  const receitaRecuperadaMes = Number(ctx.indicadores.receitaRecuperadaMes ?? 42800)
   const receitaRecuperadaVariacao = Number(ctx.indicadores.receitaRecuperadaVariacao ?? 18)
+  const receitaRecuperada = {
+    ...executiveRevenueRecoveredSeed,
+    mes: Number(ctx.indicadores.receitaRecuperadaMes ?? executiveRevenueRecoveredSeed.mes),
+    hoje: Number(ctx.indicadores.receitaRecuperadaHoje ?? executiveRevenueRecoveredSeed.hoje),
+  }
 
   const revenueInsights = executiveRevenueInsightsSeed.map((item) =>
     item.id === 'ri1' ? { ...item, valor: receitaRecuperavel } : item,
   )
 
+  const missaoDoDia: typeof executiveMissaoDoDiaSeed = {
+    ...executiveMissaoDoDiaSeed,
+    impactoFinanceiro:
+      executiveDecisionsSeed.planoAcao[0]?.impactoFinanceiro ?? executiveMissaoDoDiaSeed.impactoFinanceiro,
+  }
+
   return {
+    mensagemExecutiva: humanizeExecutiveTone(executiveMensagemExecutivaSeed),
     receitaRecuperavel,
-    receitaRecuperadaMes,
+    receitaRecuperada,
     receitaRecuperadaVariacao,
     oportunidadesCount,
     riscosCount,
-    resumoDia: executiveResumoDiaSeed,
+    resumoDia: executiveResumoDiaSeed.map(humanizeExecutiveTone),
+    missaoDoDia,
+    timeline: executiveTimelineSeed,
+    perguntasRapidas: executiveQuickQuestionsSeed,
     planoAcao: executiveDecisionsSeed.planoAcao,
     oportunidades: executiveDecisionsSeed.oportunidades,
     riscos: executiveDecisionsSeed.riscos,

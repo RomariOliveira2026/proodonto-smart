@@ -1,62 +1,52 @@
 import { TrendingUp } from 'lucide-react'
-import { Area, AreaChart, ResponsiveContainer } from 'recharts'
+import { motion } from 'framer-motion'
 import { AnimatedNumber, FadeIn } from '../../builder-ui'
+import type { RevenueRecoveredPeriod } from '../../builder-intelligence/types/executive'
 import { GlassPanel } from './GlassPanel'
 
 interface RevenueRecoveredProps {
-  valorMes: number
-  variacaoPercent: number
+  data: RevenueRecoveredPeriod
+  variacaoPercent?: number
 }
 
-const sparkData = [
-  { v: 28 },
-  { v: 31 },
-  { v: 29 },
-  { v: 34 },
-  { v: 36 },
-  { v: 39 },
-  { v: 43 },
+const periods: { key: keyof RevenueRecoveredPeriod; label: string }[] = [
+  { key: 'hoje', label: 'Hoje' },
+  { key: 'semana', label: 'Semana' },
+  { key: 'mes', label: 'Mês' },
+  { key: 'ano', label: 'Ano' },
 ]
 
-export function RevenueRecovered({ valorMes, variacaoPercent }: RevenueRecoveredProps) {
+export function RevenueRecovered({ data, variacaoPercent = 18 }: RevenueRecoveredProps) {
   return (
     <FadeIn delay={0.08}>
-      <GlassPanel className="p-6 lg:p-8 h-full flex flex-col">
-        <div className="flex items-start justify-between gap-4 mb-4">
+      <GlassPanel glow className="p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Performance</p>
-            <h2 className="font-display text-xl font-bold text-fg-strong">Receita recuperada</h2>
+            <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-2">Resultado financeiro</p>
+            <h2 className="font-display text-xl lg:text-2xl font-bold text-fg-strong">Receita recuperada</h2>
+            <p className="text-sm text-text-muted mt-1">Dinheiro que a IA ajudou a capturar — não apenas faturamento.</p>
           </div>
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success/10 text-success text-xs font-bold">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-success/10 text-success text-xs font-bold shrink-0">
             <TrendingUp className="w-3.5 h-3.5" />
-            +{variacaoPercent}%
+            +{variacaoPercent}% vs. mês anterior
           </div>
         </div>
 
-        <p className="font-display text-3xl lg:text-4xl font-extrabold text-success tracking-tight mb-1">
-          <AnimatedNumber value={valorMes} prefix="R$ " />
-        </p>
-        <p className="text-sm text-text-muted mb-6">no mês atual</p>
-
-        <div className="flex-1 min-h-[100px] -mx-2">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={sparkData}>
-              <defs>
-                <linearGradient id="recoveredSpark" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="#10B981" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <Area
-                type="monotone"
-                dataKey="v"
-                stroke="#10B981"
-                strokeWidth={2}
-                fill="url(#recoveredSpark)"
-                dot={false}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {periods.map((period, index) => (
+            <motion.div
+              key={period.key}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.06 }}
+              className="rounded-2xl border border-gray-100/80 dark:border-white/[0.06] bg-surface/40 dark:bg-white/[0.02] p-5 lg:p-6 text-center"
+            >
+              <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted mb-3">{period.label}</p>
+              <p className="font-display text-2xl lg:text-3xl font-extrabold text-success tracking-tight">
+                <AnimatedNumber value={data[period.key]} prefix="R$ " />
+              </p>
+            </motion.div>
+          ))}
         </div>
       </GlassPanel>
     </FadeIn>

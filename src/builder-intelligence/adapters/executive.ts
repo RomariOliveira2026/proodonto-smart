@@ -13,6 +13,7 @@ export function createExecutiveContext(usuario?: Partial<IntelligenceUser>): Int
     indicadores: {
       ...base.indicadores,
       receitaRecuperadaMes: 42800,
+      receitaRecuperadaHoje: 3240,
       receitaRecuperadaVariacao: 18,
     },
   }

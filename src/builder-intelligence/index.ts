@@ -18,6 +18,12 @@ export type {
   DecisionCategory,
   ExecutiveDecision,
   ExecutiveBriefing,
+  ExecutiveAnswer,
+  DailyMissionFocus,
+  IntelligentTimelineItem,
+  TimelineStatus,
+  RevenueRecoveredPeriod,
+  QuickQuestion,
   RevenueInsightItem,
   ClinicFeedItem,
 } from './types/executive'
@@ -36,6 +42,7 @@ export {
   runRiskEngine,
 } from './engines'
 export { runExecutiveEngine, getExecutiveBriefing } from './engines/executive-engine'
+export { buildExecutiveAnswer, humanizeExecutiveTone } from './lib/executiveVoice'
 
 export { BuilderIntelligenceProvider, useBuilderIntelligence } from './components/BuilderIntelligenceProvider'
 export { BuilderIntelligenceShell } from './components/BuilderIntelligenceShell'
