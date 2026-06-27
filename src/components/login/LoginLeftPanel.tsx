@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { BrandLogo } from '../../builder-ui'
 import { IAGestoraLiveCard } from './IAGestoraLiveCard'
 import './login.css'
 
@@ -78,14 +79,10 @@ export function LoginLeftPanel() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.15, duration: 0.6 }}
-            className="w-14 h-14 rounded-2xl bg-white/15 backdrop-blur flex items-center justify-center mb-10 shadow-glow"
+            className="mb-10"
           >
-            <span className="text-2xl font-bold">P</span>
+            <BrandLogo size="lg" theme="on-dark" />
           </motion.div>
-
-          <p className="text-xs font-semibold text-white/55 uppercase tracking-[0.2em] mb-5">
-            ProOdonto Smart
-          </p>
           <h1 className="font-display text-4xl xl:text-[2.75rem] font-bold leading-[1.15] tracking-tight mb-6 max-w-lg">
             A inteligência que faz sua clínica crescer.
           </h1>

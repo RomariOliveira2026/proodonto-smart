@@ -20,12 +20,16 @@ const depois = [
 
 export function BeforeAfter() {
   return (
-    <section className="py-24 lg:py-32 bg-surface">
+    <section id="comparativo" className="py-24 lg:py-32 bg-surface/80 dark:bg-white/[0.02]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn className="text-center mb-16">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
-            A transformação que seu faturamento precisa
+        <FadeIn className="text-center mb-16 lg:mb-20">
+          <p className="text-xs font-bold text-primary uppercase tracking-[0.2em] mb-4">Comparativo</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-fg-strong tracking-tight mb-4">
+            Antes x Depois
           </h2>
+          <p className="text-lg text-text-muted font-light max-w-2xl mx-auto">
+            A transformação que seu faturamento precisa — em uma única plataforma.
+          </p>
         </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
@@ -42,7 +46,7 @@ export function BeforeAfter() {
                       <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
                         <X className="w-4 h-4 text-error" />
                       </div>
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">{item}</span>
+                      <span className="text-fg-secondary font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>

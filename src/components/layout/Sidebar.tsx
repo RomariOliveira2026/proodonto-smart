@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { BrandLogo } from '../../builder-ui'
 
 const menuItems = [
   { path: '/app', label: 'Dashboard', icon: LayoutDashboard, exact: true },
@@ -55,14 +56,10 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
         <div className="flex flex-col h-full bg-[#0a1628] border-r border-white/[0.06]">
           {/* Logo */}
           <div className={`flex items-center gap-3 px-5 py-6 ${collapsed ? 'justify-center' : ''}`}>
-            <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-glow shrink-0">
-              <span className="text-white font-bold">P</span>
-            </div>
-            {!collapsed && (
-              <div className="flex-1 min-w-0">
-                <p className="font-display font-bold text-white text-base tracking-tight">ProOdonto</p>
-                <p className="text-[11px] text-white/40 font-medium">Smart · Executive</p>
-              </div>
+            {collapsed ? (
+              <BrandLogo variant="icon" size="md" />
+            ) : (
+              <BrandLogo size="md" theme="on-dark" className="flex-1 min-w-0" />
             )}
             <button onClick={onMobileClose} className="lg:hidden text-white/50 hover:text-white" aria-label="Fechar">
               <X className="w-5 h-5" />

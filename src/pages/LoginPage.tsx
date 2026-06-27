@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Eye, EyeOff, Loader2, Lock, Mail, Sparkles } from 'lucide-react'
-import { ThemeToggle } from '../builder-ui'
+import { ThemeToggle, BrandLogo } from '../builder-ui'
 import { IAGestoraLiveCard } from '../components/login/IAGestoraLiveCard'
 import { LoginField } from '../components/login/LoginField'
 import { LoginLeftPanel } from '../components/login/LoginLeftPanel'
@@ -45,12 +45,7 @@ export function LoginPage() {
           >
             {/* Mobile header */}
             <div className="lg:hidden flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-glow">
-                  <span className="text-white font-bold">P</span>
-                </div>
-                <span className="font-display font-bold text-xl text-fg-strong tracking-tight">ProOdonto Smart</span>
-              </div>
+              <BrandLogo size="md" />
               <ThemeToggle size="sm" />
             </div>
 
