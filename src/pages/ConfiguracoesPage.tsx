@@ -12,7 +12,7 @@ const secoes = [
     icon: Building2,
     title: 'Unidades',
     desc: 'Gerenciar filiais e endereços',
-    fields: ['Aracaju — Matriz', 'Simão Dias — Filial', 'Lagarto — Filial'],
+    fields: ['Simão Dias — Matriz', 'Aracaju — Filial', 'Lagarto — Filial'],
   },
   {
     icon: Bell,
