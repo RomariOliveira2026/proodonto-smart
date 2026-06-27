@@ -11,6 +11,9 @@ const heightClass: Record<BrandLogoSize, string> = {
   xl: 'h-14',
 }
 
+/** Largura útil do PNG no wordmark (clipPath do Logo.svg) — elimina padding transparente à direita */
+const WORDMARK_CONTENT_ASPECT = 361.66 / 144.75
+
 const smartClass: Record<BrandLogoSize, string> = {
   sm: 'text-[11px]',
   md: 'text-[13px]',
@@ -18,11 +21,11 @@ const smartClass: Record<BrandLogoSize, string> = {
   xl: 'text-[18px]',
 }
 
-const smartPullClass: Record<BrandLogoSize, string> = {
-  sm: '-ml-2 pl-[1ch]',
-  md: '-ml-3 pl-[1ch]',
-  lg: '-ml-3.5 pl-[1ch]',
-  xl: '-ml-4 pl-[1ch]',
+const smartGapClass: Record<BrandLogoSize, string> = {
+  sm: 'pl-[0.2em]',
+  md: 'pl-[0.2em]',
+  lg: 'pl-[0.2em]',
+  xl: 'pl-[0.2em]',
 }
 
 const smartThemeClass: Record<BrandLogoTheme, string> = {
@@ -73,15 +76,20 @@ export function BrandLogo({
         className={`inline-flex items-end gap-0 ${heightClass[size]} ${className}`}
         aria-label="ProOdonto Smart"
       >
-        <img
-          src="/logo-wordmark.svg"
-          alt=""
-          aria-hidden
-          className={`h-full w-auto object-contain object-left ${wordmarkThemeClass[theme]}`}
-        />
+        <span
+          className={`inline-block h-full overflow-hidden shrink-0`}
+          style={{ aspectRatio: WORDMARK_CONTENT_ASPECT }}
+        >
+          <img
+            src="/logo-wordmark.svg"
+            alt=""
+            aria-hidden
+            className={`h-full w-auto max-w-none object-left ${wordmarkThemeClass[theme]}`}
+          />
+        </span>
         {showSmart && variant === 'full' && (
           <span
-            className={`font-display font-semibold lowercase tracking-[-0.04em] leading-none pb-[0.14em] select-none ${smartClass[size]} ${smartThemeClass[theme]} ${smartPullClass[size]}`}
+            className={`font-display font-semibold lowercase tracking-[-0.04em] leading-none pb-[0.14em] select-none shrink-0 ${smartClass[size]} ${smartThemeClass[theme]} ${smartGapClass[size]}`}
           >
             smart
           </span>

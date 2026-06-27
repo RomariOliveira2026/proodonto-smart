@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 548 144.75" height="145" role="img" aria-label="ProOdonto smart">
-  <image xlink:href="logo-wordmark.svg" x="0" y="0" height="144.75" width="476.25" preserveAspectRatio="xMinYMid meet"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 468 144.75" height="145" role="img" aria-label="ProOdonto smart">
+  <defs>
+    <clipPath id="wordmark-trim">
+      <rect x="0" y="0" width="361.66" height="144.75"/>
+    </clipPath>
+  </defs>
+  <image xlink:href="logo-wordmark.svg" x="0" y="0" height="144.75" width="476.25" preserveAspectRatio="xMinYMid meet" clip-path="url(#wordmark-trim)"/>
   <text
-    x="478"
+    x="368"
     y="106"
     font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif"
     font-size="34"
