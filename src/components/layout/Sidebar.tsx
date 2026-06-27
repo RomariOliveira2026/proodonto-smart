@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   Bot,
+  Brain,
   Building2,
   Calendar,
   ChevronLeft,
@@ -8,7 +9,6 @@ import {
   Coins,
   HeartPulse,
   LogOut,
-  Rocket,
   Target,
   Settings,
   Sparkles,
@@ -23,7 +23,7 @@ import { BrandLogo } from '../../builder-ui'
 import { useAuth } from '../../contexts/AuthContext'
 
 const menuItems = [
-  { path: '/app', label: 'Centro de Crescimento', icon: Rocket, exact: true },
+  { path: '/app', label: 'Centro de Inteligência', icon: Brain, exact: true },
   { path: '/app/oportunidades', label: 'Central de Oportunidades', icon: Coins },
   { path: '/app/centro-comando', label: 'Centro de Comando', icon: Target },
   { path: '/app/smart-morning', label: 'Smart Morning', icon: Sun },
