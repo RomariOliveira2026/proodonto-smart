@@ -18,6 +18,7 @@ import { PosAtendimentoPage } from './pages/PosAtendimentoPage'
 import { MultiunidadesPage } from './pages/MultiunidadesPage'
 import { IAAssistentePage } from './pages/IAAssistentePage'
 import { ConfiguracoesPage } from './pages/ConfiguracoesPage'
+import { ExecutionCenterPage } from './pages/ExecutionCenterPage'
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/app" element={<AppLayout />}>
               <Route index element={<DashboardPage />} />
+              <Route path="execucao/:actionKey" element={<ExecutionCenterPage />} />
               <Route path="oportunidades" element={<OportunidadesPage />} />
               <Route path="centro-comando" element={<CentroComandoPage />} />
               <Route path="smart-morning" element={<SmartMorningPage />} />

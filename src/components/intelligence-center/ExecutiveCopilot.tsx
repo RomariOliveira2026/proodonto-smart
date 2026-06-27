@@ -41,17 +41,20 @@ export function ExecutiveCopilot() {
   const briefing = useMemo(() => getExecutiveBriefing(ctx), [ctx])
 
   const handleExecuteDecision = (decision: ExecutiveDecision) => {
+    if (decision.actionKey.includes('cobrar') || decision.actionKey.includes('confirmar')) {
+      navigate(`/app/execucao/${decision.actionKey}`)
+      return
+    }
     showToast(
       `Executando agora: ${decision.problema} · ${decision.impactoFinanceiro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 })}`,
     )
-    if (decision.actionKey.includes('orcamento') || decision.actionKey.includes('reativar') || decision.actionKey.includes('cobrar')) {
+    if (decision.actionKey.includes('orcamento') || decision.actionKey.includes('reativar')) {
       navigate('/app/oportunidades')
     }
   }
 
   const handleExecuteMission = (missao: DailyMissionFocus) => {
-    showToast(`Missão iniciada — impacto estimado de ${missao.impactoFinanceiro.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 })} em ${missao.tempoExecucaoMinutos} min.`)
-    navigate('/app/oportunidades')
+    navigate(`/app/execucao/${missao.actionKey}`)
   }
 
   const handleAsk = useCallback(
