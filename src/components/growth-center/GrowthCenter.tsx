@@ -37,7 +37,7 @@ function formatCurrency(value: number) {
 
 function getDoctorGreeting(nome: string, now: Date) {
   const firstName = nome.split(' ')[0]
-  return `${getGreetingPT(now)}, Dr(a). ${firstName}.`
+  return `${getGreetingPT(now)}, Dr. ${firstName}.`
 }
 
 export function GrowthCenter({ data, nome, now }: GrowthCenterProps) {

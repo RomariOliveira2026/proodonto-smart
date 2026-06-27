@@ -13,7 +13,7 @@ interface ExecutiveSummaryProps {
 }
 
 function getDoctorGreeting(nome: string, now: Date) {
-  return `${getGreetingPT(now)}, Dr(a). ${nome.split(' ')[0]}.`
+  return `${getGreetingPT(now)}, Dr. ${nome.split(' ')[0]}.`
 }
 
 export function ExecutiveSummary({ nome, now, briefing }: ExecutiveSummaryProps) {
