@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { Calendar, CreditCard, Target, TrendingUp, UserPlus, UserX } from 'lucide-react'
 import { AnimatedNumber, Badge } from '../../builder-ui'
+import { useLiveClock } from '../../hooks/useLiveClock'
+import { formatLongDatePT, formatTimePT, getGreetingPT } from '../../lib/dateTime'
 
 const resumo = [
   { label: 'Receita prevista', value: 18420, prefix: 'R$ ', icon: TrendingUp, color: 'text-success' },
@@ -12,6 +14,11 @@ const resumo = [
 ]
 
 export function SmartMorningBrief() {
+  const now = useLiveClock()
+  const time = formatTimePT(now)
+  const dateLine = formatLongDatePT(now)
+  const greeting = getGreetingPT(now)
+
   return (
     <div className="space-y-8">
       <motion.div
@@ -20,11 +27,19 @@ export function SmartMorningBrief() {
         className="text-center"
       >
         <Badge variant="primary" dot>Smart Morning</Badge>
-        <p className="font-display text-5xl font-light text-gray-300 dark:text-gray-600 mt-6 mb-2">07:00</p>
+        <p
+          className="font-display text-5xl font-light text-gray-300 dark:text-gray-600 mt-6 mb-2 tabular-nums"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {time}
+        </p>
         <h1 className="font-display text-3xl lg:text-4xl font-bold text-fg-strong tracking-tight">
-          Bom dia, <span className="text-gradient">João Thales</span>.
+          {greeting}, <span className="text-gradient">João Thales</span>.
         </h1>
-        <p className="text-text-muted mt-2 font-light">Quinta-feira, 25 de junho de 2026 · Unidade Lagarto</p>
+        <p className="text-text-muted mt-2 font-light" aria-live="polite">
+          {dateLine} · Unidade Lagarto
+        </p>
       </motion.div>
 
       <motion.div
@@ -58,7 +73,7 @@ export function SmartMorningBrief() {
         transition={{ delay: 0.6 }}
         className="text-center text-sm text-text-muted"
       >
-        Leitura em menos de 30 segundos · Atualizado às 07:00
+        Leitura em menos de 30 segundos · Atualizado às {time}
       </motion.p>
     </div>
   )

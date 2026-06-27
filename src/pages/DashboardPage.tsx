@@ -25,6 +25,8 @@ import { NOTA_GERAL, riscos, oportunidadesVerdes } from '../data/centroComando'
 import { ReceitaRecuperavelCard } from '../components/executive/ReceitaRecuperavelCard'
 import { IAGestoraPanel } from '../components/executive/IAGestoraPanel'
 import { faturamentoMensal, formatCurrency, metricas, unidades } from '../data/mock'
+import { useLiveClock } from '../hooks/useLiveClock'
+import { formatMonthYearPT, getGreetingPT } from '../lib/dateTime'
 
 const funnelData = [
   { stage: 'Leads', value: 420, fill: '#E0F2FE' },
@@ -53,6 +55,7 @@ const mapPins = [
 ]
 
 export function DashboardPage() {
+  const now = useLiveClock()
   const chartData = faturamentoMensal.map((d) => ({
     mes: d.mes,
     total: (d.Aracaju + d['Simão Dias'] + d.Lagarto) / 1000,
@@ -65,14 +68,16 @@ export function DashboardPage() {
           <div>
             <Badge variant="primary" dot>Dashboard Executivo</Badge>
             <h1 className="font-display text-3xl lg:text-4xl font-bold text-fg-strong tracking-tight mt-3">
-              Bom dia, João Thales.
+              {getGreetingPT(now)}, João Thales.
             </h1>
             <p className="text-text-muted font-light mt-1">
               Sua rede faturou <strong className="text-success font-semibold">{formatCurrency(metricas.faturamento)}</strong> este mês — com <strong className="text-primary font-semibold">R$ 61.840</strong> ainda recuperáveis.
             </p>
           </div>
           <div className="flex items-center gap-3 text-sm text-text-muted">
-            <span className="px-3 py-1.5 rounded-full bg-card border border-gray-100 dark:border-border shadow-soft text-fg-secondary">Junho 2026</span>
+            <span className="px-3 py-1.5 rounded-full bg-card border border-gray-100 dark:border-border shadow-soft text-fg-secondary">
+              {formatMonthYearPT(now)}
+            </span>
             <span className="px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-success font-semibold border border-emerald-200/60 dark:border-emerald-800/40">+12,4% vs. anterior</span>
           </div>
         </div>

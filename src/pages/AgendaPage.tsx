@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Calendar, Clock, Filter, MapPin, Plus, User } from 'lucide-react'
 import { Badge, Button, Card, CardHeader } from '../builder-ui'
 import { consultas } from '../data/mock'
+import { useLiveClock } from '../hooks/useLiveClock'
+import { formatLongDatePT, toISODateBrasilia } from '../lib/dateTime'
 import type { Unidade } from '../types'
 
 const statusMap = {
@@ -16,7 +18,9 @@ const unidades: (Unidade | 'Todas')[] = ['Todas', 'Aracaju', 'Simão Dias', 'Lag
 
 export function AgendaPage() {
   const [filtroUnidade, setFiltroUnidade] = useState<Unidade | 'Todas'>('Todas')
-  const hoje = consultas.filter((c) => c.data === '2026-06-25')
+  const now = useLiveClock()
+  const hojeIso = toISODateBrasilia(now)
+  const hoje = consultas.filter((c) => c.data === hojeIso)
   const filtradas = filtroUnidade === 'Todas' ? hoje : hoje.filter((c) => c.unidade === filtroUnidade)
 
   const stats = {
@@ -31,7 +35,9 @@ export function AgendaPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="font-display text-3xl font-bold text-fg-strong tracking-tight">Agenda Inteligente</h1>
-          <p className="text-text-muted font-light mt-1">Quinta-feira, 25 de junho de 2026 · <strong className="text-success">R$ 8.200</strong> em receita confirmada hoje</p>
+          <p className="text-text-muted font-light mt-1">
+            {formatLongDatePT(now)} · <strong className="text-success">R$ 8.200</strong> em receita confirmada hoje
+          </p>
         </div>
         <Button><Plus className="w-4 h-4" /> Nova consulta</Button>
       </div>
