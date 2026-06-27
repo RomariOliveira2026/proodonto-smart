@@ -5,20 +5,20 @@ type BrandLogoVariant = 'full' | 'icon' | 'wordmark'
 type BrandLogoTheme = 'default' | 'on-dark' | 'on-light'
 
 const heightClass: Record<BrandLogoSize, string> = {
-  sm: 'h-7',
-  md: 'h-9',
-  lg: 'h-11',
-  xl: 'h-14',
+  sm: 'h-8',
+  md: 'h-10',
+  lg: 'h-12',
+  xl: 'h-16',
 }
 
 /** Largura útil do PNG no wordmark (clipPath do Logo.svg) — elimina padding transparente à direita */
 const WORDMARK_CONTENT_ASPECT = 361.66 / 144.75
 
 const smartClass: Record<BrandLogoSize, string> = {
-  sm: 'text-[11px]',
-  md: 'text-[13px]',
-  lg: 'text-[15px]',
-  xl: 'text-[18px]',
+  sm: 'text-[12px]',
+  md: 'text-[14px]',
+  lg: 'text-[16px]',
+  xl: 'text-[20px]',
 }
 
 const smartGapClass: Record<BrandLogoSize, string> = {
@@ -58,10 +58,10 @@ export function BrandLogo({
   showSmart = true,
 }: BrandLogoProps) {
   const iconSizes: Record<BrandLogoSize, string> = {
-    sm: 'h-7 w-7',
-    md: 'h-9 w-9',
-    lg: 'h-11 w-11',
-    xl: 'h-14 w-14',
+    sm: 'h-8 w-8',
+    md: 'h-10 w-10',
+    lg: 'h-12 w-12',
+    xl: 'h-16 w-16',
   }
 
   const content =

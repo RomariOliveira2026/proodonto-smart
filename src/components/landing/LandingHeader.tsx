@@ -36,7 +36,7 @@ export function LandingHeader({ menuOpen, onMenuToggle, onNavClick }: LandingHea
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-[76px]">
-          <BrandLogo href="/" size="md" className="transition-transform duration-300 group-hover:scale-105" />
+          <BrandLogo href="/" size="lg" className="transition-transform duration-300 group-hover:scale-105" />
 
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (

@@ -59,7 +59,7 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
             {collapsed ? (
               <BrandLogo variant="icon" size="md" />
             ) : (
-              <BrandLogo size="md" theme="on-dark" className="flex-1 min-w-0" />
+              <BrandLogo size="lg" theme="on-dark" className="flex-1 min-w-0" />
             )}
             <button onClick={onMobileClose} className="lg:hidden text-white/50 hover:text-white" aria-label="Fechar">
               <X className="w-5 h-5" />

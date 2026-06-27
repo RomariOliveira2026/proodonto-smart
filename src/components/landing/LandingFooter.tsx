@@ -38,7 +38,7 @@ export function LandingFooter() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-14">
           <div className="lg:col-span-2">
-            <BrandLogo size="md" theme="on-dark" className="mb-5" />
+            <BrandLogo size="lg" theme="on-dark" className="mb-5" />
             <p className="text-white/60 text-sm font-light leading-relaxed max-w-sm mb-6">
               A inteligência que faz sua clínica crescer. Software executivo para gestão odontológica multiunidade — powered by Builder Intelligence™.
             </p>
