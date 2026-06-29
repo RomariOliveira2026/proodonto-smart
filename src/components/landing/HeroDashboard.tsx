@@ -15,7 +15,7 @@ export function HeroDashboard() {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 900)
+    const t = setTimeout(() => setReady(true), 500)
     return () => clearTimeout(t)
   }, [])
 

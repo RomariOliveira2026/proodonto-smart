@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { CheckCircle2, Clock, PartyPopper, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { Button } from '../../builder-ui'
@@ -21,7 +20,7 @@ export function MissionSummary({ stats }: MissionSummaryProps) {
         initial={{ scale: 0.92, y: 24 }}
         animate={{ scale: 1, y: 0 }}
         transition={{ type: 'spring', stiffness: 320, damping: 28 }}
-        className="w-full max-w-lg rounded-3xl border border-gray-100/80 dark:border-white/[0.08] bg-card dark:bg-[#101828] shadow-elevated p-8 lg:p-10 text-center"
+        className="w-full max-w-lg premium-panel premium-panel-glow shadow-elevated p-8 lg:p-10 text-center"
       >
         <motion.div
           initial={{ scale: 0 }}
@@ -54,11 +53,9 @@ export function MissionSummary({ stats }: MissionSummaryProps) {
           </div>
         </div>
 
-        <Link to="/app">
-          <Button variant="glow" size="lg" fullWidth>
-            Voltar ao Centro de Inteligência
-          </Button>
-        </Link>
+        <Button to="/app" variant="glow" size="lg" fullWidth>
+          Voltar ao Centro de Inteligência
+        </Button>
       </motion.div>
     </motion.div>
   )

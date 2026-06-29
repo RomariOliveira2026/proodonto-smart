@@ -50,7 +50,7 @@ export function FaqSection() {
                 <button
                   type="button"
                   onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-surface/50 transition-colors"
+                  className="w-full flex items-center justify-between gap-4 p-5 text-left hover:bg-surface/50 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-inset cursor-pointer"
                 >
                   <span className="font-semibold text-fg-strong text-[15px]">{faq.q}</span>
                   <ChevronDown

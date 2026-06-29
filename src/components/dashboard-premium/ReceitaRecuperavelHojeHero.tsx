@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ArrowUpRight, Sparkles, TrendingUp } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { AnimatedNumber, Button, FadeIn } from '../../builder-ui'
@@ -45,16 +44,15 @@ export function ReceitaRecuperavelHojeHero({ data }: Props) {
             Valor estimado recuperável com as ações prioritárias identificadas pela IA para hoje.
           </p>
 
-          <Link to="/app/oportunidades" className="inline-flex">
-            <Button
-              variant="outline"
-              size="lg"
-              icon={<ArrowUpRight className="w-5 h-5 text-primary" />}
-              className="!bg-white !text-primary hover:!bg-white/90 !border-white/20 shadow-soft [&_svg]:text-primary"
-            >
-              Ver oportunidades
-            </Button>
-          </Link>
+          <Button
+            to="/app/oportunidades"
+            variant="outline"
+            size="lg"
+            icon={<ArrowUpRight className="w-5 h-5 text-primary" />}
+            className="!bg-white !text-primary hover:!bg-white/90 !border-white/20 shadow-soft [&_svg]:text-primary"
+          >
+            Ver oportunidades
+          </Button>
         </div>
       </motion.div>
     </FadeIn>

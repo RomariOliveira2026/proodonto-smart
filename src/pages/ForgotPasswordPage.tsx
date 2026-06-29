@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowLeft, CheckCircle2, Loader2, Mail } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, Mail } from 'lucide-react'
 import { BrandLogo, Button, ThemeToggle } from '../builder-ui'
 import { useAuth } from '../contexts/AuthContext'
 import { LoginLeftPanel } from '../components/login/LoginLeftPanel'
@@ -40,10 +40,11 @@ export function ForgotPasswordPage() {
             <ThemeToggle size="sm" />
           </div>
 
-          <h2 className="font-display text-2xl font-bold text-fg-strong tracking-tight mb-2">
+          <div className="login-form-card rounded-3xl border border-gray-100/80 dark:border-white/[0.06] bg-white/80 dark:bg-card/90 backdrop-blur-sm p-7 sm:p-8 lg:p-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none lg:shadow-none">
+          <h2 className="font-display text-[1.65rem] sm:text-2xl font-bold text-fg-strong tracking-tight mb-2">
             Esqueci minha senha
           </h2>
-          <p className="text-text-muted font-light mb-8">
+          <p className="text-text-muted font-light mb-8 text-[15px] leading-relaxed">
             Enviaremos instruções de recuperação para o seu e-mail cadastrado.
           </p>
 
@@ -54,7 +55,7 @@ export function ForgotPasswordPage() {
               <p className="text-sm text-text-muted">
                 Em produção, o e-mail chegaria em <strong>{email}</strong>. Por enquanto, use a demo ou cadastre nova conta.
               </p>
-              <Link to="/login" className="inline-block mt-6 text-primary font-medium">
+              <Link to="/login" className="inline-block mt-6 text-primary font-medium hover:text-primary-light transition-colors duration-200">
                 Voltar ao login
               </Link>
             </div>
@@ -62,15 +63,19 @@ export function ForgotPasswordPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <LoginField id="email" label="E-mail" type="email" value={email} onChange={setEmail} icon={Mail} placeholder="seu@email.com" />
               {error && <p className="text-sm text-error">{error}</p>}
-              <Button type="submit" variant="glow" size="lg" fullWidth disabled={loading}>
-                {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Enviando...</> : 'Enviar instruções'}
+              <Button type="submit" variant="glow" size="lg" fullWidth disabled={loading} loading={loading}>
+                Enviar instruções
               </Button>
             </form>
           )}
 
-          <Link to="/login" className="inline-flex items-center gap-2 text-sm text-text-muted mt-10 hover:text-primary transition-colors">
+          <Link to="/login" className="inline-flex items-center gap-2 text-sm text-text-muted mt-10 hover:text-primary transition-colors duration-200">
             <ArrowLeft className="w-4 h-4" /> Voltar ao login
           </Link>
+          <p className="text-center text-sm text-text-muted mt-4">
+            <Link to="/" className="text-primary font-medium hover:text-primary-light transition-colors duration-200">← Voltar ao site</Link>
+          </p>
+          </div>
         </div>
       </div>
     </motion.div>

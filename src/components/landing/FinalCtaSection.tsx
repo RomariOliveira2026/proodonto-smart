@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Button, FadeIn } from '../../builder-ui'
 
@@ -24,26 +23,24 @@ export function FinalCtaSection() {
             Centenas de milhares de reais. Agora imagine os próximos 3 anos com o ProOdonto Smart.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/login">
-              <Button
-                variant="secondary"
-                size="xl"
-                icon={<Sparkles className="w-5 h-5" />}
-                className="bg-white text-primary hover:bg-white/95 shadow-elevated border-0 w-full sm:w-auto"
-              >
-                Quero recuperar meu faturamento
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button
-                variant="outline"
-                size="xl"
-                className="border-white/30 text-white hover:bg-white/10 w-full sm:w-auto"
-              >
-                Acessar demonstração
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
+            <Button
+              to="/login"
+              variant="secondary"
+              size="xl"
+              icon={<Sparkles className="w-5 h-5" />}
+              className="!bg-white !text-primary hover:!bg-white/95 !border-0 shadow-elevated [&_svg]:text-primary"
+            >
+              Quero recuperar meu faturamento
+            </Button>
+            <Button
+              to="/login"
+              variant="outline"
+              size="xl"
+              className="!border-white/30 !text-white hover:!bg-white/10 w-full sm:w-auto"
+            >
+              Acessar demonstração
+              <ArrowRight className="w-5 h-5" />
+            </Button>
           </div>
         </FadeIn>
       </div>

@@ -36,14 +36,14 @@ export function LandingHeader({ menuOpen, onMenuToggle, onNavClick }: LandingHea
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-[76px]">
-          <BrandLogo href="/" size="lg" className="transition-transform duration-300 group-hover:scale-105" />
+          <BrandLogo href="/" size="lg" className="transition-transform duration-300 hover:scale-[1.02]" />
 
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3.5 py-2 text-[13px] font-medium text-text-muted hover:text-primary dark:hover:text-primary-light rounded-lg hover:bg-primary/5 transition-colors"
+                className="px-3.5 py-2 text-[13px] font-medium text-text-muted hover:text-primary dark:hover:text-primary-light rounded-lg hover:bg-primary/5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
               >
                 {link.label}
               </a>
@@ -54,24 +54,23 @@ export function LandingHeader({ menuOpen, onMenuToggle, onNavClick }: LandingHea
             <ThemeToggle size="sm" />
             <Link
               to="/login"
-              className="text-sm font-medium text-fg-tertiary hover:text-primary transition-colors px-3 py-2"
+              className="text-sm font-medium text-fg-tertiary hover:text-primary transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
             >
               Entrar
             </Link>
-            <Link to="#calculadora">
-              <Button variant="glow" size="sm" className="shadow-glow">
-                Recuperar faturamento
-              </Button>
-            </Link>
+            <Button href="#calculadora" variant="glow" size="sm" className="shadow-glow">
+              Recuperar faturamento
+            </Button>
           </div>
 
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle size="sm" />
             <button
               type="button"
-              className="p-2.5 rounded-xl hover:bg-gray-100/80 dark:hover:bg-white/10 text-fg-secondary transition-colors"
+              className="p-2.5 rounded-xl hover:bg-gray-100/80 dark:hover:bg-white/10 text-fg-secondary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
               onClick={onMenuToggle}
               aria-label="Menu"
+              aria-expanded={menuOpen}
             >
               {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -80,24 +79,26 @@ export function LandingHeader({ menuOpen, onMenuToggle, onNavClick }: LandingHea
       </div>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-100 dark:border-border bg-bg/95 backdrop-blur-xl px-4 py-5 space-y-1">
+        <div className="md:hidden border-t border-gray-100 dark:border-border bg-bg/95 backdrop-blur-xl px-4 py-5 space-y-1 animate-fade-in">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={onNavClick}
-              className="block py-3 px-3 text-fg-secondary font-medium rounded-xl hover:bg-surface transition-colors"
+              className="block py-3 px-3 text-fg-secondary font-medium rounded-xl hover:bg-surface transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
           <div className="pt-4 space-y-3">
-            <Link to="/login" onClick={onNavClick}>
-              <Button fullWidth variant="glow" size="lg">
-                Recuperar faturamento
-              </Button>
-            </Link>
-            <Link to="/login" onClick={onNavClick} className="block text-center text-sm text-primary font-medium py-2">
+            <Button href="#calculadora" fullWidth variant="glow" size="lg" onClick={onNavClick}>
+              Recuperar faturamento
+            </Button>
+            <Link
+              to="/login"
+              onClick={onNavClick}
+              className="block text-center text-sm text-primary font-medium py-2 rounded-lg hover:bg-primary/5 transition-colors"
+            >
               Já tenho conta — Entrar
             </Link>
           </div>

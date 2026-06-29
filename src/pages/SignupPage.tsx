@@ -82,10 +82,11 @@ export function SignupPage() {
               <ThemeToggle size="sm" />
             </div>
 
-            <h2 className="font-display text-2xl font-bold text-fg-strong tracking-tight mb-2">
+            <div className="login-form-card rounded-3xl border border-gray-100/80 dark:border-white/[0.06] bg-white/80 dark:bg-card/90 backdrop-blur-sm p-7 sm:p-8 lg:p-0 lg:border-0 lg:bg-transparent lg:backdrop-blur-none lg:shadow-none">
+            <h2 className="font-display text-[1.65rem] sm:text-2xl font-bold text-fg-strong tracking-tight mb-2">
               Cadastre sua clínica
             </h2>
-            <p className="text-text-muted font-light mb-8 text-[15px]">
+            <p className="text-text-muted font-light mb-8 text-[15px] leading-relaxed">
               {fromCalculator
                 ? 'Sua simulação foi salva. Crie sua conta para acessar o painel executivo.'
                 : 'Comece grátis. Configure em minutos e veja oportunidades de receita.'}
@@ -105,7 +106,7 @@ export function SignupPage() {
                 onChange={setSenha}
                 icon={Lock}
                 trailing={
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted p-0.5" aria-label="Mostrar senha">
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-text-muted hover:text-primary transition-colors duration-200 p-0.5" aria-label="Mostrar senha">
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 }
@@ -115,7 +116,9 @@ export function SignupPage() {
               <motion.button
                 type="submit"
                 disabled={loading}
-                className="login-btn-glow w-full inline-flex items-center justify-center gap-2.5 rounded-xl px-8 py-4 text-base font-semibold gradient-primary text-white shadow-glow disabled:opacity-80"
+                whileHover={loading ? {} : { y: -2 }}
+                whileTap={loading ? {} : { scale: 0.985 }}
+                className="login-btn-glow w-full inline-flex items-center justify-center gap-2.5 rounded-xl px-8 py-4 text-base font-semibold gradient-primary text-white shadow-glow hover:shadow-elevated disabled:opacity-80 disabled:cursor-wait transition-shadow duration-300"
               >
                 {loading ? <><Loader2 className="w-5 h-5 login-spinner" /> Criando conta...</> : <><Sparkles className="w-5 h-5" /> Criar conta e acessar</>}
               </motion.button>
@@ -125,8 +128,13 @@ export function SignupPage() {
 
             <p className="text-center text-sm text-text-muted mt-8">
               Já tem conta?{' '}
-              <Link to="/login" className="text-primary font-medium hover:text-primary-light">Entrar</Link>
+              <Link to="/login" className="text-primary font-medium hover:text-primary-light transition-colors duration-200">Entrar</Link>
             </p>
+
+            <p className="text-center text-sm text-text-muted mt-4">
+              <Link to="/" className="text-primary font-medium hover:text-primary-light transition-colors duration-200">← Voltar ao site</Link>
+            </p>
+            </div>
           </motion.div>
         </div>
       </motion.div>

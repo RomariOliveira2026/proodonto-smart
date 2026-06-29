@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { Button, FadeIn, PageLoader } from '../builder-ui'
@@ -23,7 +22,7 @@ export function LandingPage() {
 
   return (
     <>
-      <PageLoader duration={800} />
+      <PageLoader duration={550} />
       <LandingSchema />
 
       <div className="min-h-screen bg-bg overflow-x-hidden">
@@ -69,23 +68,26 @@ export function LandingPage() {
 
                 <FadeIn delay={0.24}>
                   <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                    <Link to="/login" className="sm:flex-1 lg:flex-none">
-                      <Button
-                        variant="glow"
-                        size="xl"
-                        fullWidth
-                        icon={<Sparkles className="w-5 h-5" />}
-                        className="shadow-glow hover:shadow-elevated"
-                      >
-                        Recuperar meu faturamento
-                      </Button>
-                    </Link>
-                    <Link to="/login" className="sm:flex-1 lg:flex-none">
-                      <Button variant="outline" size="xl" fullWidth className="group">
-                        Ver demonstração
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-                      </Button>
-                    </Link>
+                    <Button
+                      to="/login"
+                      variant="glow"
+                      size="xl"
+                      fullWidth
+                      icon={<Sparkles className="w-5 h-5" />}
+                      className="sm:flex-1 lg:flex-none shadow-glow"
+                    >
+                      Recuperar meu faturamento
+                    </Button>
+                    <Button
+                      href="#calculadora"
+                      variant="outline"
+                      size="xl"
+                      fullWidth
+                      className="sm:flex-1 lg:flex-none group"
+                    >
+                      Ver demonstração
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                    </Button>
                   </div>
                 </FadeIn>
 

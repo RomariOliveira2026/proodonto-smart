@@ -72,8 +72,8 @@ export function LeadCaptureModal({ open, onClose, calculator }: LeadCaptureModal
           <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={fieldClass} placeholder="seu@email.com" />
         </div>
 
-        <Button type="submit" variant="glow" size="lg" fullWidth disabled={loading} className="mt-2">
-          {loading ? 'Salvando...' : 'Continuar para cadastro'}
+        <Button type="submit" variant="glow" size="lg" fullWidth disabled={loading} loading={loading} className="mt-2">
+          Continuar para cadastro
         </Button>
       </form>
     </Modal>

@@ -40,6 +40,29 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+:focus-visible {
+  outline: none;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 body {
@@ -152,3 +175,16 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: rgba(11, 95, 165, 0.35); }
 .dark ::-webkit-scrollbar-thumb { background: rgba(29, 167, 224, 0.2); }
 .dark ::-webkit-scrollbar-thumb:hover { background: rgba(29, 167, 224, 0.35); }
+
+/* Painéis premium — acabamento consistente */
+.premium-panel {
+  @apply rounded-3xl border border-gray-100/80 dark:border-white/[0.07] bg-card/95 dark:bg-[#101828]/85 backdrop-blur-xl shadow-soft transition-shadow duration-300;
+}
+
+.premium-panel:hover {
+  @apply shadow-elevated dark:shadow-[0_20px_48px_rgba(0,0,0,0.35)];
+}
+
+.premium-panel-glow {
+  @apply ring-1 ring-primary/10 dark:ring-primary-light/10;
+}

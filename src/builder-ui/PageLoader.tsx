@@ -6,7 +6,7 @@ interface PageLoaderProps {
   duration?: number
 }
 
-export function PageLoader({ duration = 700 }: PageLoaderProps) {
+export function PageLoader({ duration = 550 }: PageLoaderProps) {
   const [visible, setVisible] = useState(true)
 
   useEffect(() => {
@@ -20,23 +20,26 @@ export function PageLoader({ duration = 700 }: PageLoaderProps) {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.45, ease: 'easeInOut' }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-bg"
+          role="status"
+          aria-live="polite"
+          aria-label="Carregando"
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.94, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center gap-6"
           >
             <BrandLogo size="xl" />
-            <div className="flex gap-1.5">
+            <div className="flex gap-1.5" aria-hidden>
               {[0, 1, 2].map((i) => (
                 <motion.span
                   key={i}
                   className="w-2 h-2 rounded-full bg-primary"
-                  animate={{ opacity: [0.3, 1, 0.3], scale: [0.85, 1, 0.85] }}
-                  transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }}
+                  animate={{ opacity: [0.35, 1, 0.35], scale: [0.9, 1, 0.9] }}
+                  transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.12, ease: 'easeInOut' }}
                 />
               ))}
             </div>

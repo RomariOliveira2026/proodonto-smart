@@ -19,16 +19,31 @@ const paddings = {
 }
 
 export function Card({ children, className = '', hover, glow, padding = 'md', onClick }: CardProps) {
-  const Component = onClick ? motion.button : motion.div
+  const baseClass = `bg-card rounded-2xl border border-gray-100/80 dark:border-white/[0.07] shadow-soft text-left w-full transition-all duration-300 ${glow ? 'shadow-glow border-primary/10 dark:border-primary/20' : ''} ${paddings[padding]} ${hover ? 'cursor-pointer hover:border-primary/15 dark:hover:border-primary/25 hover:shadow-elevated' : ''} ${className}`
+
+  if (onClick) {
+    return (
+      <motion.button
+        type="button"
+        whileHover={hover ? { y: -2 } : undefined}
+        whileTap={hover ? { scale: 0.995 } : undefined}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+        onClick={onClick}
+        className={baseClass}
+      >
+        {children}
+      </motion.button>
+    )
+  }
+
   return (
-    <Component
-      whileHover={hover ? { y: -2, boxShadow: '0 20px 48px rgba(11, 95, 165, 0.12)' } : undefined}
+    <motion.div
+      whileHover={hover ? { y: -2 } : undefined}
       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      onClick={onClick}
-      className={`bg-card rounded-2xl border border-gray-100/80 dark:border-border shadow-soft text-left w-full ${glow ? 'shadow-glow border-primary/10 dark:border-primary/20' : ''} ${paddings[padding]} ${hover ? 'cursor-pointer' : ''} ${className}`}
+      className={baseClass}
     >
       {children}
-    </Component>
+    </motion.div>
   )
 }
 

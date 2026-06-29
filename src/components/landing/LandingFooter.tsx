@@ -17,15 +17,15 @@ const columns = [
     links: [
       { label: 'Sobre a BuilderTudo', href: '#' },
       { label: 'Builder Intelligence™', href: '#' },
-      { label: 'Contato comercial', href: '#' },
+      { label: 'Contato comercial', href: 'mailto:contato@proodonto.com' },
     ],
   },
   {
     title: 'Legal',
     links: [
-      { label: 'Privacidade (LGPD)', href: '#' },
-      { label: 'Termos de uso', href: '#' },
-      { label: 'Segurança', href: '#' },
+      { label: 'Privacidade (LGPD)', href: '#faq' },
+      { label: 'Termos de uso', href: '#faq' },
+      { label: 'Segurança', href: '#faq' },
     ],
   },
 ]
@@ -72,10 +72,10 @@ export function LandingFooter() {
             <a href="mailto:contato@proodonto.com" className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors" aria-label="E-mail">
               <Mail className="w-4 h-4" />
             </a>
-            <a href="#" className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors" aria-label="Redes sociais">
+            <a href="mailto:contato@proodonto.com?subject=ProOdonto%20Smart" className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-light/40" aria-label="Contato comercial">
               <Share2 className="w-4 h-4" />
             </a>
-            <a href="#" className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors" aria-label="Site BuilderTudo">
+            <a href="https://proodonto-smart.vercel.app" className="p-2 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors duration-200" aria-label="Site ProOdonto Smart">
               <Globe className="w-4 h-4" />
             </a>
             <Link to="/login" className="text-sm font-semibold text-primary-light hover:text-white transition-colors ml-2">

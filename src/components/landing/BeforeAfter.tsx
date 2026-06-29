@@ -34,16 +34,16 @@ export function BeforeAfter() {
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           <FadeIn direction="left">
-            <div className="h-full p-8 lg:p-10 rounded-3xl bg-card border border-red-100/80 dark:border-red-900/30 shadow-soft relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-full opacity-60" />
+            <div className="h-full p-8 lg:p-10 rounded-3xl bg-card border border-red-100/80 dark:border-red-900/30 shadow-soft relative overflow-hidden transition-shadow duration-300 hover:shadow-elevated">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 dark:bg-red-950/40 rounded-bl-full opacity-60" />
               <div className="relative">
-                <span className="inline-block px-3 py-1 rounded-full bg-red-50 text-error text-xs font-bold uppercase tracking-wider mb-6">
+                <span className="inline-block px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/50 text-error text-xs font-bold uppercase tracking-wider mb-6">
                   Antes do ProOdonto Smart
                 </span>
                 <ul className="space-y-5">
                   {antes.map((item) => (
                     <li key={item} className="flex items-center gap-4">
-                      <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-red-50 dark:bg-red-950/50 flex items-center justify-center shrink-0">
                         <X className="w-4 h-4 text-error" />
                       </div>
                       <span className="text-fg-secondary font-medium">{item}</span>
