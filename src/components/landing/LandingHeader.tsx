@@ -6,9 +6,11 @@ import './landing.css'
 
 const navLinks = [
   { href: '#beneficios', label: 'Benefícios' },
+  { href: '#integracao', label: 'Integração' },
   { href: '#como-funciona', label: 'Como funciona' },
   { href: '#recursos', label: 'Recursos' },
   { href: '#calculadora', label: 'Calculadora' },
+  { href: '#piloto', label: 'Piloto' },
   { href: '#depoimentos', label: 'Depoimentos' },
   { href: '#faq', label: 'FAQ' },
 ]

@@ -78,7 +78,12 @@ export function ExecutiveCopilot() {
 
       <LiveIntelligenceEngine missionActionKey={briefing.missaoDoDia.actionKey} />
 
-      <ExecutiveSummary nome={nome} now={now} briefing={briefing} />
+      <ExecutiveSummary
+        nome={nome}
+        now={now}
+        briefing={briefing}
+        onScrollToMission={() => document.getElementById('missao-do-dia')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+      />
 
       <DailyMission missao={briefing.missaoDoDia} onExecute={handleExecuteMission} />
 

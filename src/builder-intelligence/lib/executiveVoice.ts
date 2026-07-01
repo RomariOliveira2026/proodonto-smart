@@ -30,9 +30,9 @@ export function buildExecutiveAnswer(question: string, ctx: IntelligenceContext)
   if (/quem devo ligar|ligar/.test(q)) {
     return {
       mensagem:
-        'Ligue primeiro para Fernanda Costa (orçamento R$ 8.900 — 78% de chance), depois Maria Silva (parcela atrasada R$ 4.800) e João Pedro (reativação R$ 2.100). Esses três concentraram 62% do potencial de hoje.',
-      impactoFinanceiro: 15800,
-      actionLabel: 'Abrir lista de ligações',
+        'Eu priorizaria 8 pacientes. Eles somam R$ 32.400 em receita potencial e têm alta chance de retorno porque já iniciaram atendimento nos últimos 12 meses.',
+      impactoFinanceiro: 32400,
+      actionLabel: 'Ver lista de pacientes',
       actionKey: 'lista_ligacoes',
     }
   }

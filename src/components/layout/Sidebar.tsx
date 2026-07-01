@@ -7,8 +7,12 @@ import {
   ChevronLeft,
   ChevronRight,
   Coins,
+  FileBarChart,
   HeartPulse,
   LogOut,
+  MessageSquare,
+  PlugZap,
+  Radar,
   Target,
   Settings,
   Sparkles,
@@ -24,6 +28,10 @@ import { useAuth } from '../../contexts/AuthContext'
 
 const menuItems = [
   { path: '/app', label: 'Centro de Inteligência', icon: Brain, exact: true },
+  { path: '/app/radar-perda-invisivel', label: 'Radar de Perda Invisível', icon: Radar },
+  { path: '/app/consultor-ia', label: 'Consultor IA', icon: MessageSquare },
+  { path: '/app/simulador-integracao', label: 'Simulador de Integração', icon: PlugZap },
+  { path: '/app/relatorio-executivo', label: 'Relatório Executivo', icon: FileBarChart },
   { path: '/app/oportunidades', label: 'Central de Oportunidades', icon: Coins },
   { path: '/app/centro-comando', label: 'Centro de Comando', icon: Target },
   { path: '/app/smart-morning', label: 'Smart Morning', icon: Sun },
@@ -74,7 +82,7 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
             <div className="mx-4 mb-4 px-3 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.06]">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5 text-primary-light" />
-                <span className="text-[11px] text-white/60 font-medium">IA Gestora ativa</span>
+                <span className="text-[11px] text-white/60 font-medium">Camada IA conectada</span>
                 <span className="ml-auto w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
               </div>
             </div>

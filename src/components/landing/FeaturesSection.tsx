@@ -18,7 +18,7 @@ export function FeaturesSection() {
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-fg-strong tracking-tight mb-4">
             Cada módulo coloca mais dinheiro no seu bolso
           </h2>
-          <p className="text-text-muted text-lg font-light">Não é funcionalidade. É resultado financeiro.</p>
+          <p className="text-text-muted text-lg font-light">Camada de inteligência conectável — cada módulo gera receita recuperável.</p>
         </FadeIn>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">

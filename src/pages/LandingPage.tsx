@@ -12,6 +12,8 @@ import { HowItWorksSection } from '../components/landing/HowItWorksSection'
 import { FeaturesSection } from '../components/landing/FeaturesSection'
 import { TestimonialsSection } from '../components/landing/TestimonialsSection'
 import { FaqSection } from '../components/landing/FaqSection'
+import { IntegrationSection } from '../components/landing/IntegrationSection'
+import { PilotCtaSection } from '../components/landing/PilotCtaSection'
 import { FinalCtaSection } from '../components/landing/FinalCtaSection'
 import '../components/landing/landing.css'
 
@@ -59,10 +61,11 @@ export function LandingPage() {
 
                 <FadeIn delay={0.16}>
                   <p className="text-lg sm:text-xl text-text-muted font-light leading-relaxed mb-4 max-w-lg">
-                    Pacientes faltam. Parcelas atrasam. Horários ficam vazios. Tratamentos deixam de ser vendidos.
+                    O ProOdonto Smart não substitui seu sistema atual no primeiro momento.
+                    Ele se conecta à operação da clínica e transforma dados em crescimento.
                   </p>
                   <p className="text-lg font-medium text-fg-secondary mb-10">
-                    O ProOdonto Smart automatiza tudo isso — e a IA encontra o dinheiro antes de você.
+                    Pacientes faltam. Parcelas atrasam. Tratamentos ficam parados. A IA encontra o dinheiro escondido — antes de você.
                   </p>
                 </FadeIn>
 
@@ -112,9 +115,11 @@ export function LandingPage() {
 
         <BenefitsSection />
         <HowItWorksSection />
+        <IntegrationSection />
         <LossCalculator />
         <BeforeAfter />
         <FeaturesSection />
+        <PilotCtaSection />
         <TestimonialsSection />
         <FaqSection />
         <FinalCtaSection />

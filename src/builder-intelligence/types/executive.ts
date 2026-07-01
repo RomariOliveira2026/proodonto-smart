@@ -76,6 +76,7 @@ export interface ClinicFeedItem {
 
 export interface ExecutiveBriefing {
   mensagemExecutiva: string
+  introParagraphs: string[]
   receitaRecuperavel: number
   receitaRecuperada: RevenueRecoveredPeriod
   receitaRecuperadaVariacao: number

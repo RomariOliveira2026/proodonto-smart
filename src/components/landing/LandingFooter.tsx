@@ -9,7 +9,9 @@ const columns = [
       { label: 'Benefícios', href: '#beneficios' },
       { label: 'Como funciona', href: '#como-funciona' },
       { label: 'Recursos', href: '#recursos' },
+      { label: 'Integração', href: '#integracao' },
       { label: 'Calculadora', href: '#calculadora' },
+      { label: 'Piloto sem troca', href: '#piloto' },
     ],
   },
   {

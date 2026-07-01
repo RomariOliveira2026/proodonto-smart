@@ -15,6 +15,7 @@ export function DailyMission({ missao, onExecute }: DailyMissionProps) {
 
   return (
     <FadeIn delay={0.06}>
+      <div id="missao-do-dia">
       <GlassPanel glow className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-primary opacity-[0.97]" />
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
@@ -69,6 +70,7 @@ export function DailyMission({ missao, onExecute }: DailyMissionProps) {
           </div>
         </div>
       </GlassPanel>
+      </div>
     </FadeIn>
   )
 }

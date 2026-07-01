@@ -1,6 +1,6 @@
-import { Sparkles } from 'lucide-react'
+import { Calendar, FileBarChart, PlugZap } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { Badge, FadeIn } from '../../builder-ui'
+import { Badge, Button, FadeIn } from '../../builder-ui'
 import { getGreetingPT } from '../../lib/dateTime'
 import type { ExecutiveBriefing } from '../../builder-intelligence/types/executive'
 import { formatCurrency } from './utils'
@@ -10,13 +10,14 @@ interface ExecutiveSummaryProps {
   nome: string
   now: Date
   briefing: ExecutiveBriefing
+  onScrollToMission?: () => void
 }
 
 function getDoctorGreeting(nome: string, now: Date) {
   return `${getGreetingPT(now)}, Dr. ${nome.split(' ')[0]}.`
 }
 
-export function ExecutiveSummary({ nome, now, briefing }: ExecutiveSummaryProps) {
+export function ExecutiveSummary({ nome, now, briefing, onScrollToMission }: ExecutiveSummaryProps) {
   return (
     <FadeIn>
       <GlassPanel glow className="overflow-hidden">
@@ -24,27 +25,64 @@ export function ExecutiveSummary({ nome, now, briefing }: ExecutiveSummaryProps)
           <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.04] via-transparent to-primary-light/[0.06] pointer-events-none" />
 
           <div className="relative max-w-4xl">
-            <Badge variant="primary" dot>Copiloto Executivo</Badge>
+            <Badge variant="primary" dot>Copiloto Executivo · Camada conectável</Badge>
 
             <motion.h1
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fg-strong tracking-tight mt-5 mb-4"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-fg-strong tracking-tight mt-5 mb-6"
             >
               {getDoctorGreeting(nome, now)}
             </motion.h1>
 
-            <p className="text-lg sm:text-xl text-fg-secondary font-light leading-relaxed mb-6">
-              {briefing.mensagemExecutiva}
-            </p>
+            <div className="space-y-4 mb-6">
+              {briefing.introParagraphs.map((para, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.08 + i * 0.06 }}
+                  className="text-lg sm:text-xl text-fg-secondary font-light leading-relaxed"
+                >
+                  {para}
+                </motion.p>
+              ))}
+            </div>
 
             <p className="text-base text-primary-light font-semibold mb-8">
               Objetivo financeiro de hoje: capturar {formatCurrency(briefing.receitaRecuperavel)} com ações de alto retorno.
             </p>
 
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-10">
+              <Button
+                variant="glow"
+                size="lg"
+                icon={<Calendar className="w-4 h-4" />}
+                onClick={onScrollToMission}
+              >
+                Ver plano de hoje
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                icon={<PlugZap className="w-4 h-4" />}
+                to="/app/simulador-integracao"
+              >
+                Simular integração
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                icon={<FileBarChart className="w-4 h-4" />}
+                to="/app/relatorio-executivo"
+              >
+                Gerar relatório executivo
+              </Button>
+            </div>
+
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-4 h-4 text-primary-light" />
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-light animate-pulse" />
                 <h2 className="font-display text-lg font-bold text-fg-strong">O que importa agora</h2>
               </div>
               <ul className="space-y-3">

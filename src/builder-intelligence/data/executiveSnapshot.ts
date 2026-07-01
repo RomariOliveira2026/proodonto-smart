@@ -72,8 +72,14 @@ export const executiveQuickQuestionsSeed: QuickQuestion[] = [
   { id: 'qq5', label: 'Mostrar pacientes VIP', queryKey: 'mostrar pacientes vip' },
 ]
 
+export const executiveIntroParagraphsSeed = [
+  'Eu não vim substituir seu sistema. Vim transformar os dados da sua clínica em decisões.',
+  'Analisei agenda, pacientes, cobranças e tratamentos. Encontrei oportunidades reais de recuperação de faturamento.',
+  'Minha recomendação para hoje é começar pelas ações com maior retorno financeiro.',
+]
+
 export const executiveMensagemExecutivaSeed =
-  'Hoje o foco é simples: proteger R$ 27.200 em risco e capturar R$ 12.480 que já estão ao alcance. Comece pela inadimplência — 15 minutos podem mudar o dia da clínica.'
+  'Conectado à sua operação atual, identifiquei receita recuperável e riscos que passam despercebidos no dia a dia.'
 
 export const executiveResumoDiaSeed: string[] = [
   'Antes do meio-dia, neutralize R$ 12.400 bloqueados em parcelas vencidas.',

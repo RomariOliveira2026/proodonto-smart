@@ -20,6 +20,10 @@ const FinanceiroPage = lazy(() => import('./pages/FinanceiroPage').then((m) => (
 const PosAtendimentoPage = lazy(() => import('./pages/PosAtendimentoPage').then((m) => ({ default: m.PosAtendimentoPage })))
 const MultiunidadesPage = lazy(() => import('./pages/MultiunidadesPage').then((m) => ({ default: m.MultiunidadesPage })))
 const IAAssistentePage = lazy(() => import('./pages/IAAssistentePage').then((m) => ({ default: m.IAAssistentePage })))
+const InvisibleLossRadarPage = lazy(() => import('./pages/InvisibleLossRadarPage').then((m) => ({ default: m.InvisibleLossRadarPage })))
+const IntegrationSimulatorPage = lazy(() => import('./pages/IntegrationSimulatorPage').then((m) => ({ default: m.IntegrationSimulatorPage })))
+const AIConsultantPage = lazy(() => import('./pages/AIConsultantPage').then((m) => ({ default: m.AIConsultantPage })))
+const ExecutiveReportPage = lazy(() => import('./pages/ExecutiveReportPage').then((m) => ({ default: m.ExecutiveReportPage })))
 const ConfiguracoesPage = lazy(() => import('./pages/ConfiguracoesPage').then((m) => ({ default: m.ConfiguracoesPage })))
 
 function RouteFallback() {
@@ -67,6 +71,10 @@ export default function App() {
               <Route path="financeiro" element={<Lazy><FinanceiroPage /></Lazy>} />
               <Route path="pos-atendimento" element={<Lazy><PosAtendimentoPage /></Lazy>} />
               <Route path="multiunidades" element={<Lazy><MultiunidadesPage /></Lazy>} />
+              <Route path="radar-perda-invisivel" element={<Lazy><InvisibleLossRadarPage /></Lazy>} />
+              <Route path="simulador-integracao" element={<Lazy><IntegrationSimulatorPage /></Lazy>} />
+              <Route path="consultor-ia" element={<Lazy><AIConsultantPage /></Lazy>} />
+              <Route path="relatorio-executivo" element={<Lazy><ExecutiveReportPage /></Lazy>} />
               <Route path="ia-assistente" element={<Lazy><IAAssistentePage /></Lazy>} />
               <Route path="configuracoes" element={<Lazy><ConfiguracoesPage /></Lazy>} />
             </Route>

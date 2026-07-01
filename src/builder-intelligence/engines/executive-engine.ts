@@ -3,6 +3,7 @@ import type { ExecutiveBriefing } from '../types/executive'
 import {
   executiveDecisionsSeed,
   executiveFeedSeed,
+  executiveIntroParagraphsSeed,
   executiveMensagemExecutivaSeed,
   executiveMissaoDoDiaSeed,
   executiveQuickQuestionsSeed,
@@ -43,6 +44,7 @@ export function runExecutiveEngine(ctx: IntelligenceContext): ExecutiveBriefing 
 
   return {
     mensagemExecutiva: humanizeExecutiveTone(executiveMensagemExecutivaSeed),
+    introParagraphs: executiveIntroParagraphsSeed.map(humanizeExecutiveTone),
     receitaRecuperavel,
     receitaRecuperada,
     receitaRecuperadaVariacao,
