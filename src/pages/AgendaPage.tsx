@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Calendar, Clock, Filter, MapPin, Plus, User } from 'lucide-react'
-import { Badge, Button, Card, CardHeader } from '../builder-ui'
+import { Calendar, Clock, Filter, MapPin, Plus, Sparkles, User } from 'lucide-react'
+import { Badge, Button, Card, CardHeader, useToast } from '../builder-ui'
 import { consultas } from '../data/mock'
 import { useLiveClock } from '../hooks/useLiveClock'
 import { formatLongDatePT, toISODateBrasilia } from '../lib/dateTime'
@@ -17,7 +17,9 @@ const statusMap = {
 const unidades: (Unidade | 'Todas')[] = ['Todas', 'Aracaju', 'Simão Dias', 'Lagarto']
 
 export function AgendaPage() {
+  const { showToast } = useToast()
   const [filtroUnidade, setFiltroUnidade] = useState<Unidade | 'Todas'>('Todas')
+  const [preenchendo, setPreenchendo] = useState(false)
   const now = useLiveClock()
   const hojeIso = toISODateBrasilia(now)
   const hoje = consultas.filter((c) => c.data === hojeIso)
@@ -30,6 +32,19 @@ export function AgendaPage() {
     faltas: hoje.filter((c) => c.status === 'faltou').length,
   }
 
+  const handleNovaConsulta = () => {
+    showToast('Nova consulta: a IA sugere os melhores horários com base na lista de espera.')
+  }
+
+  const handlePreencherLacunas = () => {
+    if (preenchendo) return
+    setPreenchendo(true)
+    window.setTimeout(() => {
+      setPreenchendo(false)
+      showToast('3 lacunas preenchidas com pacientes da lista de espera — R$ 1.260 em receita recuperada.')
+    }, 1400)
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -39,7 +54,7 @@ export function AgendaPage() {
             {formatLongDatePT(now)} · <strong className="text-success">R$ 8.200</strong> em receita confirmada hoje
           </p>
         </div>
-        <Button><Plus className="w-4 h-4" /> Nova consulta</Button>
+        <Button onClick={handleNovaConsulta}><Plus className="w-4 h-4" /> Nova consulta</Button>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -105,7 +120,16 @@ export function AgendaPage() {
             <p className="text-sm text-text-muted mt-1">
               3 lacunas amanhã entre 14h-17h em Aracaju. Lista de espera com 7 pacientes disponíveis para preenchimento automático.
             </p>
-            <Button size="sm" className="mt-3">Preencher lacunas</Button>
+            <Button
+              size="sm"
+              className="mt-3"
+              icon={<Sparkles className="w-4 h-4" />}
+              onClick={handlePreencherLacunas}
+              loading={preenchendo}
+              disabled={preenchendo}
+            >
+              Preencher lacunas
+            </Button>
           </div>
         </div>
       </Card>
