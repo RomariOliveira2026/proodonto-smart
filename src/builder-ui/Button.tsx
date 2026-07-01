@@ -107,6 +107,7 @@ export function Button({
   return (
     <motion.button
       type="button"
+      onClick={onClick}
       {...motionProps}
       className={classes}
       disabled={isDisabled}
