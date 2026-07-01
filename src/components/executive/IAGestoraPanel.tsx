@@ -1,13 +1,15 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Bot, Calendar, CreditCard, Megaphone, RefreshCw, Sparkles, Users } from 'lucide-react'
-import { Badge, Button } from '../../builder-ui'
+import { Badge, Button, useToast } from '../../builder-ui'
 import { AnimatedNumber } from '../../builder-ui'
 
 const sugestoes = [
-  { label: 'Enviar confirmação automática', icon: Calendar, impact: 'R$ 8.200', color: 'bg-sky-500/10 text-sky-600' },
-  { label: 'Lançar campanha de revisão', icon: Megaphone, impact: 'R$ 6.400', color: 'bg-violet-500/10 text-violet-600' },
-  { label: 'Cobrar parcelas vencidas', icon: CreditCard, impact: 'R$ 5.100', color: 'bg-amber-500/10 text-amber-600' },
-  { label: 'Reativar pacientes inativos', icon: RefreshCw, impact: 'R$ 4.600', color: 'bg-emerald-500/10 text-emerald-600' },
+  { label: 'Enviar confirmação automática', icon: Calendar, impact: 'R$ 8.200', color: 'bg-sky-500/10 text-sky-600', actionKey: 'confirmar_consultas' },
+  { label: 'Lançar campanha de revisão', icon: Megaphone, impact: 'R$ 6.400', color: 'bg-violet-500/10 text-violet-600', actionKey: 'revisoes_atrasadas' },
+  { label: 'Cobrar parcelas vencidas', icon: CreditCard, impact: 'R$ 5.100', color: 'bg-amber-500/10 text-amber-600', actionKey: 'cobrar_inadimplentes' },
+  { label: 'Reativar pacientes inativos', icon: RefreshCw, impact: 'R$ 4.600', color: 'bg-emerald-500/10 text-emerald-600', actionKey: 'reativar_pacientes' },
 ]
 
 const alertas = [
@@ -17,6 +19,33 @@ const alertas = [
 ]
 
 export function IAGestoraPanel({ compact }: { compact?: boolean }) {
+  const navigate = useNavigate()
+  const { showToast } = useToast()
+  const [executando, setExecutando] = useState(false)
+
+  const irParaExecucao = (actionKey: string) => {
+    if (actionKey.includes('cobrar') || actionKey.includes('confirmar')) {
+      navigate(`/app/execucao/${actionKey}`)
+      return
+    }
+    navigate('/app/oportunidades')
+  }
+
+  const handleSugestao = (label: string, impact: string, actionKey: string) => {
+    showToast(`${label} iniciada · ${impact} em potencial.`)
+    window.setTimeout(() => irParaExecucao(actionKey), 600)
+  }
+
+  const handleExecutarTodas = () => {
+    if (executando) return
+    setExecutando(true)
+    window.setTimeout(() => {
+      setExecutando(false)
+      showToast('4 automações em execução · R$ 24.300 em receita potencial ativada.')
+      navigate('/app/oportunidades')
+    }, 1600)
+  }
+
   return (
     <div className={`relative overflow-hidden rounded-3xl border border-primary/10 dark:border-primary/20 bg-card shadow-elevated ${compact ? '' : ''}`}>
       <div className="absolute top-0 left-0 right-0 h-1 gradient-primary" />
@@ -79,11 +108,13 @@ export function IAGestoraPanel({ compact }: { compact?: boolean }) {
           {sugestoes.map((s, i) => (
             <motion.button
               key={s.label}
+              type="button"
+              onClick={() => handleSugestao(s.label, s.impact, s.actionKey)}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.08 }}
               whileHover={{ scale: 1.02, y: -2 }}
-              className="flex items-center gap-3 p-4 rounded-xl border border-gray-100 dark:border-border bg-card hover:shadow-soft hover:border-primary/20 transition-all text-left group"
+              className="flex items-center gap-3 p-4 rounded-xl border border-gray-100 dark:border-border bg-card hover:shadow-soft hover:border-primary/20 transition-all text-left group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
             >
               <div className={`p-2.5 rounded-xl ${s.color}`}>
                 <s.icon className="w-4 h-4" />
@@ -105,7 +136,16 @@ export function IAGestoraPanel({ compact }: { compact?: boolean }) {
           </div>
         )}
 
-        <Button variant="glow" fullWidth className="mt-6" size="lg">
+        <Button
+          variant="glow"
+          fullWidth
+          className="mt-6"
+          size="lg"
+          icon={<Sparkles className="w-5 h-5" />}
+          onClick={handleExecutarTodas}
+          loading={executando}
+          disabled={executando}
+        >
           Executar todas as sugestões
         </Button>
       </div>
