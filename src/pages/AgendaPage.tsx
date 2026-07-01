@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Calendar, Clock, Filter, MapPin, Plus, Sparkles, User } from 'lucide-react'
 import { Badge, Button, Card, CardHeader, useToast } from '../builder-ui'
-import { consultas } from '../data/mock'
+import { getConsultas } from '../data/mock'
 import { useLiveClock } from '../hooks/useLiveClock'
 import { formatLongDatePT, toISODateBrasilia } from '../lib/dateTime'
 import type { Unidade } from '../types'
@@ -22,6 +22,7 @@ export function AgendaPage() {
   const [preenchendo, setPreenchendo] = useState(false)
   const now = useLiveClock()
   const hojeIso = toISODateBrasilia(now)
+  const consultas = getConsultas(now)
   const hoje = consultas.filter((c) => c.data === hojeIso)
   const filtradas = filtroUnidade === 'Todas' ? hoje : hoje.filter((c) => c.unidade === filtroUnidade)
 

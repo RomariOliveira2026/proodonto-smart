@@ -7,6 +7,7 @@ import type {
   PosAtendimento,
   UnidadeInfo,
 } from '../types'
+import { addDaysISO, toISODateBrasilia } from '../lib/dateTime'
 
 export const unidades: UnidadeInfo[] = [
   {
@@ -180,16 +181,31 @@ export const pacientes: Paciente[] = [
   },
 ]
 
-export const consultas: Consulta[] = [
-  { id: '1', paciente: 'Maria Silva Santos', pacienteId: '1', dentista: 'Dra. Patrícia', procedimento: 'Avaliação implante', data: '2026-06-25', hora: '08:00', unidade: 'Aracaju', status: 'confirmada' },
-  { id: '2', paciente: 'João Pedro Oliveira', pacienteId: '2', dentista: 'Dr. Marcelo', procedimento: 'Restauração', data: '2026-06-25', hora: '09:30', unidade: 'Simão Dias', status: 'confirmada' },
-  { id: '3', paciente: 'Ana Carolina Mendes', pacienteId: '3', dentista: 'Dra. Juliana', procedimento: 'Ajuste ortodôntico', data: '2026-06-25', hora: '10:00', unidade: 'Lagarto', status: 'pendente' },
-  { id: '4', paciente: 'Carlos Eduardo Lima', pacienteId: '4', dentista: 'Dr. Rafael', procedimento: 'Retorno canal', data: '2026-06-25', hora: '11:00', unidade: 'Aracaju', status: 'confirmada' },
-  { id: '5', paciente: 'Fernanda Costa Ribeiro', pacienteId: '5', dentista: 'Dra. Patrícia', procedimento: 'Prova facetas', data: '2026-06-25', hora: '14:00', unidade: 'Simão Dias', status: 'confirmada' },
-  { id: '6', paciente: 'Ricardo Almeida Souza', pacienteId: '6', dentista: 'Dr. Marcelo', procedimento: 'Avaliação', data: '2026-06-25', hora: '15:30', unidade: 'Lagarto', status: 'faltou' },
-  { id: '7', paciente: 'Luciana Ferreira', pacienteId: '7', dentista: 'Dra. Juliana', procedimento: 'Limpeza', data: '2026-06-25', hora: '16:00', unidade: 'Aracaju', status: 'pendente' },
-  { id: '8', paciente: 'Pedro Henrique Dias', pacienteId: '8', dentista: 'Dr. Rafael', procedimento: 'Clareamento', data: '2026-06-26', hora: '08:30', unidade: 'Aracaju', status: 'confirmada' },
+type ConsultaTemplate = Omit<Consulta, 'data'> & { dayOffset: number }
+
+const consultasTemplates: ConsultaTemplate[] = [
+  { id: '1', paciente: 'Maria Silva Santos', pacienteId: '1', dentista: 'Dra. Patrícia', procedimento: 'Avaliação implante', dayOffset: 0, hora: '08:00', unidade: 'Aracaju', status: 'confirmada' },
+  { id: '2', paciente: 'João Pedro Oliveira', pacienteId: '2', dentista: 'Dr. Marcelo', procedimento: 'Restauração', dayOffset: 0, hora: '09:30', unidade: 'Simão Dias', status: 'confirmada' },
+  { id: '3', paciente: 'Ana Carolina Mendes', pacienteId: '3', dentista: 'Dra. Juliana', procedimento: 'Ajuste ortodôntico', dayOffset: 0, hora: '10:00', unidade: 'Lagarto', status: 'pendente' },
+  { id: '4', paciente: 'Carlos Eduardo Lima', pacienteId: '4', dentista: 'Dr. Rafael', procedimento: 'Retorno canal', dayOffset: 0, hora: '11:00', unidade: 'Aracaju', status: 'confirmada' },
+  { id: '5', paciente: 'Fernanda Costa Ribeiro', pacienteId: '5', dentista: 'Dra. Patrícia', procedimento: 'Prova facetas', dayOffset: 0, hora: '14:00', unidade: 'Simão Dias', status: 'confirmada' },
+  { id: '6', paciente: 'Ricardo Almeida Souza', pacienteId: '6', dentista: 'Dr. Marcelo', procedimento: 'Avaliação', dayOffset: 0, hora: '15:30', unidade: 'Lagarto', status: 'faltou' },
+  { id: '7', paciente: 'Luciana Ferreira', pacienteId: '7', dentista: 'Dra. Juliana', procedimento: 'Limpeza', dayOffset: 0, hora: '16:00', unidade: 'Aracaju', status: 'pendente' },
+  { id: '8', paciente: 'Beatriz Nascimento', pacienteId: '9', dentista: 'Dra. Juliana', procedimento: 'Clareamento', dayOffset: 0, hora: '17:00', unidade: 'Lagarto', status: 'confirmada' },
+  { id: '9', paciente: 'Pedro Henrique Dias', pacienteId: '8', dentista: 'Dr. Rafael', procedimento: 'Clareamento', dayOffset: 1, hora: '08:30', unidade: 'Aracaju', status: 'confirmada' },
 ]
+
+/** Consultas com datas relativas a hoje (Brasília) — sempre atualizadas na demo. */
+export function getConsultas(now = new Date()): Consulta[] {
+  const hoje = toISODateBrasilia(now)
+  return consultasTemplates.map(({ dayOffset, ...c }) => ({
+    ...c,
+    data: addDaysISO(hoje, dayOffset),
+  }))
+}
+
+/** @deprecated Use getConsultas(now) para datas dinâmicas */
+export const consultas: Consulta[] = getConsultas()
 
 export const cobrancas: Cobranca[] = [
   { id: '1', paciente: 'Maria Silva Santos', pacienteId: '1', valor: 1200, vencimento: '2026-06-10', status: 'atrasado', unidade: 'Aracaju', procedimento: 'Parcela implante 2/6' },

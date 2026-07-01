@@ -70,6 +70,16 @@ export function toISODateBrasilia(date: Date): string {
   return date.toLocaleDateString('sv-SE', brasiliaFormatOpts)
 }
 
+/** Soma dias a uma data ISO (YYYY-MM-DD) — uso em dados demo relativos a "hoje". */
+export function addDaysISO(isoDate: string, days: number): string {
+  const [y, m, d] = isoDate.split('-').map(Number)
+  const next = new Date(y, m - 1, d + days)
+  const year = next.getFullYear()
+  const month = String(next.getMonth() + 1).padStart(2, '0')
+  const day = String(next.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
+}
+
 /** @deprecated Use toISODateBrasilia */
 export const toISODateLocal = toISODateBrasilia
 
